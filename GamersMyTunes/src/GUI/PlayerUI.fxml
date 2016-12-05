@@ -8,24 +8,23 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="950.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="GUI.Controller.PlayerUIController">
+<AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PlayerUIController">
    <children>
       <Button layoutX="55.0" layoutY="33.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="49.0" text="Prev" />
       <Button layoutX="104.0" layoutY="33.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="49.0" text="Play" />
       <Button layoutX="153.0" layoutY="33.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="56.0" text="Next" />
       <Button layoutX="209.0" layoutY="33.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="56.0" text="Stop" />
-      <Button layoutX="54.0" layoutY="503.0" mnemonicParsing="false" text="New" />
+      <Button fx:id="btnPlaylistNew" layoutX="54.0" layoutY="503.0" mnemonicParsing="false" onAction="#btnPlaylistUINew" text="New" />
       <Button layoutX="136.0" layoutY="503.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="50.0" text="Edit" />
-      <Button layoutX="225.0" layoutY="503.0" mnemonicParsing="false" text="Del" />
-      <Button contentDisplay="CENTER" layoutX="300.0" layoutY="503.0" mnemonicParsing="false" text="^" />
+      <Button layoutX="228.0" layoutY="503.0" mnemonicParsing="false" text="Del" />
+      <Button contentDisplay="CENTER" layoutX="293.0" layoutY="503.0" mnemonicParsing="false" text="^" />
       <Button contentDisplay="CENTER" layoutX="388.0" layoutY="503.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" text="v" />
-      <Button contentDisplay="CENTER" layoutX="464.0" layoutY="503.0" mnemonicParsing="false" text="Del" />
+      <Button contentDisplay="CENTER" layoutX="473.0" layoutY="503.0" mnemonicParsing="false" text="Del" />
       <Button layoutX="536.0" layoutY="503.0" mnemonicParsing="false" text="New" />
       <Button layoutX="691.0" layoutY="503.0" mnemonicParsing="false" text="Edit" />
-      <Button layoutX="829.0" layoutY="503.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="837.0" layoutY="503.0" mnemonicParsing="false" text="Delete" />
       <Button layoutX="892.0" layoutY="534.0" mnemonicParsing="false" text="Close" />
-      <TableView layoutX="55.0" layoutY="84.0" prefHeight="419.0" prefWidth="213.0">
+      <TableView layoutX="55.0" layoutY="84.0" prefHeight="419.0" prefWidth="207.0">
         <columns>
           <TableColumn prefWidth="75.0" text="Name" />
           <TableColumn prefWidth="75.0" text="Songs" />
@@ -35,7 +34,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TableView layoutX="300.0" layoutY="84.0" prefHeight="419.0" prefWidth="207.0">
+      <TableView layoutX="293.0" layoutY="84.0" prefHeight="419.0" prefWidth="214.0">
         <columns>
           <TableColumn prefWidth="75.0" text="Name" />
         </columns>
@@ -43,7 +42,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TableView layoutX="536.0" layoutY="84.0" prefHeight="419.0" prefWidth="356.0">
+      <TableView layoutX="536.0" layoutY="84.0" prefHeight="419.0" prefWidth="352.0">
         <columns>
           <TableColumn prefWidth="75.0" text="Title" />
           <TableColumn prefWidth="75.0" text="Artist" />
@@ -54,12 +53,12 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Label layoutX="54.0" layoutY="64.0" text="Songs on playlist:" />
-      <Label layoutX="298.0" layoutY="64.0" text="Playlists:" />
+      <Label layoutX="58.0" layoutY="64.0" text="Songs on playlist:" />
+      <Label layoutX="293.0" layoutY="64.0" text="Playlists:" />
       <Label layoutX="536.0" layoutY="64.0" text="Songs:" />
-      <Label layoutX="808.0" layoutY="23.0" text="Filter:" />
-      <TextField layoutX="844.0" layoutY="18.0" prefHeight="21.0" prefWidth="96.0" />
-      <Slider layoutX="334.0" layoutY="35.0" />
-      <Label layoutX="536.0" layoutY="34.0" prefHeight="21.0" prefWidth="225.0" text="Now playing: " />
+      <Label layoutX="808.0" layoutY="41.0" text="Filter:" />
+      <TextField layoutX="840.0" layoutY="36.0" prefHeight="21.0" prefWidth="96.0" />
+      <Slider layoutX="334.0" layoutY="43.0" />
+      <Label layoutX="536.0" layoutY="39.0" prefHeight="21.0" prefWidth="225.0" text="Now playing: " />
    </children>
 </AnchorPane>
