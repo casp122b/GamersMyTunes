@@ -20,7 +20,7 @@
       <Button contentDisplay="CENTER" layoutX="293.0" layoutY="503.0" mnemonicParsing="false" text="^" />
       <Button contentDisplay="CENTER" layoutX="388.0" layoutY="503.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" text="v" />
       <Button contentDisplay="CENTER" layoutX="473.0" layoutY="503.0" mnemonicParsing="false" text="Del" />
-      <Button layoutX="536.0" layoutY="503.0" mnemonicParsing="false" text="New" />
+      <Button fx:id="btnSongUINew" layoutX="536.0" layoutY="503.0" mnemonicParsing="false" onAction="#btnSongUINew" text="New" />
       <Button layoutX="691.0" layoutY="503.0" mnemonicParsing="false" text="Edit" />
       <Button layoutX="837.0" layoutY="503.0" mnemonicParsing="false" text="Delete" />
       <Button layoutX="892.0" layoutY="534.0" mnemonicParsing="false" text="Close" />

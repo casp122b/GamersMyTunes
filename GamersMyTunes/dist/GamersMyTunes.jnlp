@@ -8,7 +8,16 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="GamersMyTunes.jar" size="5767" download="eager" />
+    <jar href="GamersMyTunes.jar" size="23849" download="eager" />
+    <jar href="lib\basicplayer3.0.jar" size="11093" download="eager" />
+    <jar href="lib\commons-logging-api.jar" size="26202" download="eager" />
+    <jar href="lib\jl1.0.jar" size="105446" download="eager" />
+    <jar href="lib\jogg-0.0.7.jar" size="6839" download="eager" />
+    <jar href="lib\jorbis-0.0.15.jar" size="58917" download="eager" />
+    <jar href="lib\jspeex0.9.7.jar" size="99833" download="eager" />
+    <jar href="lib\mp3spi1.9.5.jar" size="24696" download="eager" />
+    <jar href="lib\tritonus_share.jar" size="102723" download="eager" />
+    <jar href="lib\vorbisspi1.0.2.jar" size="13776" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="GamersMyTunes" >
     <param name="requiredFXVersion" value="8.0+"/>
