@@ -7,20 +7,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="284.0" prefWidth="329.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SongUIController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="284.0" prefWidth="329.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SongUIController">
    <children>
-      <Text layoutX="43.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title:" />
-      <Text layoutX="40.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Artist:" />
-      <Text layoutX="18.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" />
-      <Text layoutX="41.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time:" />
-      <Text layoutX="45.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File:" />
-      <TextField layoutX="76.0" layoutY="26.0" />
-      <TextField layoutX="76.0" layoutY="73.0" />
-      <TextField layoutX="76.0" layoutY="152.0" />
-      <TextField layoutX="76.0" layoutY="196.0" />
-      <Button layoutX="76.0" layoutY="230.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Cancel" />
-      <Button layoutX="150.0" layoutY="230.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Save" />
-      <Button layoutX="233.0" layoutY="196.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Browse..." />
+      <Text fx:id="lblTitle" layoutX="43.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title:" />
+      <Text fx:id="lblArtist" layoutX="40.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Artist:" />
+      <Text fx:id="lblCategory" layoutX="18.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" />
+      <Text fx:id="lblTime" layoutX="41.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time:" />
+      <Text fx:id="lblFile" layoutX="45.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File:" />
+      <TextField fx:id="txtTitle" layoutX="76.0" layoutY="26.0" />
+      <TextField fx:id="txtArtist" layoutX="76.0" layoutY="73.0" />
+      <TextField fx:id="txtTime" layoutX="76.0" layoutY="152.0" />
+      <TextField fx:id="txtFile" layoutX="76.0" layoutY="196.0" />
+      <Button fx:id="btnCancel" layoutX="76.0" layoutY="230.0" mnemonicParsing="false" onAction="#btnCancelActionPerformed" prefHeight="25.0" prefWidth="74.0" text="Cancel" />
+      <Button fx:id="btnSave" layoutX="150.0" layoutY="230.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Save" />
+      <Button fx:id="btnBrowse" layoutX="233.0" layoutY="196.0" mnemonicParsing="false" onAction="#btnBrowseActionPerformed" prefHeight="25.0" prefWidth="74.0" text="Browse..." />
       <Button layoutX="173.0" layoutY="118.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="Add" />
       <MenuButton layoutX="76.0" layoutY="118.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Choose">
         <items>
