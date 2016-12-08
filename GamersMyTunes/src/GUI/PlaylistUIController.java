@@ -7,7 +7,11 @@ package GUI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -16,6 +20,9 @@ import javafx.fxml.Initializable;
  */
 public class PlaylistUIController implements Initializable {
 
+    @FXML
+    private Button btnCancel;
+    
     /**
      * Initializes the controller class.
      */
@@ -24,4 +31,10 @@ public class PlaylistUIController implements Initializable {
         // TODO
     }    
     
+    @FXML
+    private void btnCancelActionPerformed(ActionEvent event) 
+    {
+        Stage stage = (Stage) btnCancel.getScene().getWindow();
+        stage.close();
+    }
 }

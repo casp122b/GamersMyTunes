@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import GUI.SongUIController;
 /**
  *
  * @author Casper & Jens
@@ -24,7 +23,6 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         
-
     }
 
     /**
