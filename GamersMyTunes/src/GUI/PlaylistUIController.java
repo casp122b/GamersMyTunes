@@ -32,7 +32,7 @@ public class PlaylistUIController implements Initializable {
         // TODO
     }    
 
-    private void btnCancelActionPerformed(ActionEvent event) 
+    public void btnCancelActionPerformed(ActionEvent event) 
     {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
