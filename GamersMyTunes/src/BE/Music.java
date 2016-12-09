@@ -13,7 +13,7 @@ public class Music
 {
 
     private String title;
-    private String catagory;
+    private String category;
     private String artist;
     private String time;
     private String file;
@@ -24,16 +24,16 @@ public class Music
      * @param id
      * @param title
      * @param artist
-     * @param catagory
+     * @param category
      * @param time
      * @param file 
      */
-    public Music(int id, String title, String artist, String catagory, String time, String file)
+    public Music(int id, String title, String artist, String category, String time, String file)
     {
         this.id = id;
         this.title = title;
         this.artist = artist;
-        this.catagory = catagory;
+        this.category = category;
         this.time = time;
         this.file = file;
     }
@@ -42,14 +42,14 @@ public class Music
      * If there wasn't given an id, the id is set to -1
      * @param title
      * @param artist
-     * @param catagory
+     * @param category
      * @param time
      * @param file 
      */
-    public Music(String title, String artist, String catagory, String time, String file)
+    public Music(String title, String artist, String category, String time, String file)
     {
 
-        this(-1, title, artist, catagory, time, file);
+        this(-1, title, artist, category, time, file);
     }
 
     /**
@@ -75,7 +75,7 @@ public class Music
      */
     public String getGenre()
     {
-        return catagory;
+        return category;
     }
 
     /**
@@ -140,7 +140,7 @@ public class Music
      */
     public void setGenre(String genre)
     {
-        this.catagory = genre;
+        this.category = genre;
     }
 
     /**

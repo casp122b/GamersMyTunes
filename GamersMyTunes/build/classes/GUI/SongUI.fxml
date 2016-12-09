@@ -6,21 +6,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="284.0" prefWidth="329.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SongUIController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="284.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SongUIController">
    <children>
-      <Text fx:id="lblTitle" layoutX="43.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title:" />
-      <Text fx:id="lblArtist" layoutX="40.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Artist:" />
-      <Text fx:id="lblCategory" layoutX="20.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" />
-      <Text fx:id="lblTime" layoutX="41.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time:" />
-      <Text fx:id="lblFile" layoutX="45.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File:" />
+      <Text fx:id="lblTitle" layoutX="43.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title:" />
+      <Text fx:id="lblArtist" layoutX="37.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Artist:" wrappingWidth="43.3056640625" />
+      <Text fx:id="lblCategory" layoutX="11.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" />
+      <Text fx:id="lblTime" layoutX="41.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time:" />
+      <Text fx:id="lblFile" layoutX="51.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File:" />
       <TextField fx:id="txtTitle" layoutX="76.0" layoutY="26.0" />
       <TextField fx:id="txtArtist" layoutX="76.0" layoutY="73.0" />
       <TextField fx:id="txtTime" layoutX="76.0" layoutY="152.0" />
       <TextField fx:id="txtFile" layoutX="76.0" layoutY="196.0" />
       <Button fx:id="btnCancel" layoutX="76.0" layoutY="230.0" mnemonicParsing="false" onAction="#btnCancelActionPerformed" prefHeight="25.0" prefWidth="74.0" text="Cancel" />
-      <Button fx:id="btnSave" layoutX="150.0" layoutY="230.0" mnemonicParsing="false" onAction="#btnSaveActionPerformed" prefHeight="25.0" prefWidth="74.0" text="Save" />
-      <Button fx:id="btnBrowse" layoutX="233.0" layoutY="196.0" mnemonicParsing="false" onAction="#btnBrowseActionPerformed" prefHeight="25.0" prefWidth="74.0" text="Browse..." />
-      <Button fx:id="btnAdd" layoutX="172.0" layoutY="110.0" mnemonicParsing="false" onAction="#btnAddCategoryActionPerformed" prefHeight="25.0" prefWidth="52.0" text="Add" />
-      <ComboBox fx:id="cmbCategory" layoutX="76.0" layoutY="110.0" prefHeight="25.0" prefWidth="74.0" promptText="Rock" />
+      <Button fx:id="btnSave" layoutX="187.0" layoutY="230.0" mnemonicParsing="false" onAction="#btnSaveActionPerformed" prefHeight="25.0" prefWidth="74.0" text="Save" />
+      <Button fx:id="btnBrowse" layoutX="263.0" layoutY="196.0" mnemonicParsing="false" onAction="#btnBrowseActionPerformed" prefHeight="31.0" prefWidth="84.0" text="Browse..." />
+      <Button fx:id="btnAdd" layoutX="210.0" layoutY="110.0" mnemonicParsing="false" onAction="#btnAddCategoryActionPerformed" prefHeight="25.0" prefWidth="52.0" text="Add" />
+      <ComboBox fx:id="cmbCategory" layoutX="76.0" layoutY="110.0" prefHeight="31.0" prefWidth="93.0" promptText="Rock" />
    </children>
 </AnchorPane>

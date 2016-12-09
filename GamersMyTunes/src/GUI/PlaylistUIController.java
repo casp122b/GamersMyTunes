@@ -21,6 +21,7 @@ public class PlaylistUIController implements Initializable {
     
     @FXML
     private Button btnCancel;
+    private PlayerUIController main;
 
     /**
      * Initializes the controller class.
@@ -34,7 +35,12 @@ public class PlaylistUIController implements Initializable {
 
     public void btnCancelActionPerformed(ActionEvent event) 
     {
+       
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
+    }
+
+    void setMainWindow(PlayerUIController aThis) {
+        main = aThis;
     }
 }
