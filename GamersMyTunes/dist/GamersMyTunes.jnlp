@@ -8,11 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-<<<<<<< HEAD
-    <jar href="GamersMyTunes.jar" size="24927" download="eager" />
-=======
-    <jar href="GamersMyTunes.jar" size="24034" download="eager" />
->>>>>>> c90a781fc430a7cdcc31e32c6e33c368ab4cb49e
+    <jar href="GamersMyTunes.jar" size="25313" download="eager" />
     <jar href="lib\basicplayer3.0.jar" size="11093" download="eager" />
     <jar href="lib\commons-logging-api.jar" size="26202" download="eager" />
     <jar href="lib\jl1.0.jar" size="105446" download="eager" />

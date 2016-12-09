@@ -7,6 +7,7 @@ package GUI;
 
 import BE.Music;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -113,7 +115,16 @@ public class SongUIController implements Initializable {
     @FXML
     private void btnAddCategoryActionPerformed(ActionEvent event)                                               
     { 
+        TextInputDialog dialog = new TextInputDialog("Pik");
+        dialog.setTitle("Add a new category");
+        dialog.setHeaderText("Add category");
+        dialog.setContentText("Enter new category:");
         
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent())
+        {
+            cmbCategory.getItems().add(result.get());
+        }
     }    
     
 }

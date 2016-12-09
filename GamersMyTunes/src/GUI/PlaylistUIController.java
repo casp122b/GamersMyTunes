@@ -12,10 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-<<<<<<< HEAD
-
-=======
->>>>>>> c90a781fc430a7cdcc31e32c6e33c368ab4cb49e
 /**
  * FXML Controller class
  *
@@ -26,9 +22,6 @@ public class PlaylistUIController implements Initializable {
     @FXML
     private Button btnCancel;
 
-    @FXML
-    private Button btnCancel;
-    
     /**
      * Initializes the controller class.
      * @param url
@@ -38,12 +31,7 @@ public class PlaylistUIController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-<<<<<<< HEAD
-    
-    @FXML
-=======
-        @FXML
->>>>>>> c90a781fc430a7cdcc31e32c6e33c368ab4cb49e
+
     private void btnCancelActionPerformed(ActionEvent event) 
     {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
