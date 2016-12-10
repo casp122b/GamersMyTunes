@@ -5,14 +5,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="106.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PlaylistUIController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="106.0" prefWidth="230.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PlaylistUIController">
    <children>
       <Label fx:id="lblName" layoutX="14.0" layoutY="32.0" text="Name:" />
-      <Button fx:id="btnCancel" layoutX="63.0" layoutY="56.0" mnemonicParsing="false" onAction="#btnCancelActionPerformed" text="Cancel" />
-      <Button fx:id="btnSave" layoutX="199.0" layoutY="59.0" mnemonicParsing="false" text="Save" />
+      <Button fx:id="btnCancel" layoutX="63.0" layoutY="57.0" mnemonicParsing="false" onAction="#btnCancelActionPerformed" text="Cancel" />
+      <Button fx:id="btnSave" layoutX="171.0" layoutY="57.0" mnemonicParsing="false" onAction="#btnSaveActionPerformed" text="Save" />
       <TextField fx:id="txtName" layoutX="63.0" layoutY="28.0" />
       <Label layoutX="14.0" layoutY="32.0" text="Name:" />
-      <Button fx:id="btnCancel" layoutX="63.0" layoutY="59.0" mnemonicParsing="false" onAction="#btnCancelActionPerformed" text="Cancel" />
-      <TextField layoutX="63.0" layoutY="28.0" />
+      <TextField fx:id="txtPlaylistName" layoutX="63.0" layoutY="28.0" />
    </children>
 </AnchorPane>

@@ -6,6 +6,7 @@
 package GUI;
 
 import BE.Music;
+import BE.Playlist;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
@@ -64,7 +65,7 @@ public class PlayerUIController implements Initializable {
     @FXML
     private TableView<?> tblSOP;
     @FXML
-    private TableView<?> tblPlaylists;
+    private TableView<Playlist> tblPlaylists;
     @FXML
     private TableView<Music> tblSongs;
     @FXML
@@ -80,13 +81,7 @@ public class PlayerUIController implements Initializable {
     @FXML
     private Label lblNP;
     @FXML
-    private TableColumn<?, ?> sopColName;
-    @FXML
-    private TableColumn<?, ?> sopColSongs;
-    @FXML
-    private TableColumn<?, ?> sopColTime;
-    @FXML
-    private TableColumn<?, ?> playlistsColName;
+    private TableColumn<Playlist, String> playlistsColName;
     @FXML
     private TableColumn<Music, String> songsColTitle;
     @FXML
@@ -95,15 +90,25 @@ public class PlayerUIController implements Initializable {
     private TableColumn<Music, String> songsColCategory;
     @FXML
     private TableColumn<Music, String> songsColTime;
+    @FXML
+    private TableColumn<?, ?> SOPColTitle;
+    @FXML
+    private TableColumn<?, ?> SOPColArtist;
+    @FXML
+    private TableColumn<Playlist, Integer> playlistsColSongs;
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) 
+    {
             tblSongs.setItems(FXCollections.observableArrayList());
             songsColTitle.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getTitle()));
             songsColArtist.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getArtist()));
             songsColCategory.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getGenre()));
             songsColTime.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getTime()));
             
+            tblPlaylists.setItems(FXCollections.observableArrayList());
+            playlistsColName.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
+            playlistsColSongs.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getSongs()));
     }
     /**
      * Clears all ratings.
@@ -127,9 +132,15 @@ public class PlayerUIController implements Initializable {
         }
     }
     
-    public void addToPlaylist(Music m)
+    public void addToSongs(Music m)
     {
         tblSongs.getItems().add(m);
+    }
+    
+    public void addToPlaylist(Playlist pl)
+    {
+        tblPlaylists.getItems().add(pl);
+        
     }
     
     @FXML

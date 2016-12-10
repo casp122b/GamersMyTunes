@@ -142,7 +142,7 @@ public class SongUIController implements Initializable {
             if (!title.equals(""))
             {
                 music = new Music(title, artist, category, time, file);
-                main.addToPlaylist(music);
+                main.addToSongs(music);
                 
                 Stage stage = (Stage) btnSave.getScene().getWindow();
                 stage.close();
@@ -158,16 +158,10 @@ public class SongUIController implements Initializable {
         }
     }
     
-//    @FXML
-//    public void btnAddCategoryActionPerformed(ActionEvent event)
-//    {
-//        new Alert(Alert.AlertType.ERROR, "This is an error!").showAndWait();
-//    }
-    
     @FXML
     private void btnAddCategoryActionPerformed(ActionEvent event)                                               
     { 
-        TextInputDialog dialog = new TextInputDialog("Pik");
+        TextInputDialog dialog = new TextInputDialog("");
         dialog.setTitle("Add a new category");
         dialog.setHeaderText("Add category");
         dialog.setContentText("Enter new category:");

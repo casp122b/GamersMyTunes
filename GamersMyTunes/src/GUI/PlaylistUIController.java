@@ -5,12 +5,17 @@
  */
 package GUI;
 
+import BE.Playlist;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 /**
  * FXML Controller class
@@ -21,7 +26,17 @@ public class PlaylistUIController implements Initializable {
     
     @FXML
     private Button btnCancel;
+    @FXML TextField txtPlaylistName;
     private PlayerUIController main;
+    private Playlist playlist;
+    @FXML
+    private AnchorPane root;
+    @FXML
+    private Label lblName;
+    @FXML
+    private Button btnSave;
+    @FXML
+    private TextField txtName;
 
     /**
      * Initializes the controller class.
@@ -33,6 +48,7 @@ public class PlaylistUIController implements Initializable {
         // TODO
     }    
 
+    @FXML
     public void btnCancelActionPerformed(ActionEvent event) 
     {
        
@@ -43,4 +59,27 @@ public class PlaylistUIController implements Initializable {
     void setMainWindow(PlayerUIController aThis) {
         main = aThis;
     }
+    
+    @FXML
+    public void btnSaveActionPerformed(ActionEvent event)
+    {
+        String name = txtPlaylistName.getText().trim();
+        if (!name.equals(""))
+        {
+            playlist = new Playlist(name);
+            main.addToPlaylist(playlist);
+            Stage stage = (Stage) btnSave.getScene().getWindow();
+            stage.close();
+        }
+        else
+        {
+            new Alert(Alert.AlertType.ERROR, "You must input a name for the playlist!").showAndWait();
+        }
+    }
+    
+    public Playlist getPlaylist()
+    {
+        return playlist;
+    }
 }
+
