@@ -125,21 +125,22 @@ public class Playlist
     {
         return musiclist;
     }
-
-    /**
-     * Checks wheter the object in the parameter is an PlayList object, if not, it returns false, 
-     * else it returns wheter or not the PlayList object and the parameter object has the same id
-     * @param o
-     * @return true or false based on wheter or the two ids are identical
-     */
-    @Override
-    public boolean equals(Object o)
-    {
-        if (!(o instanceof Playlist))
-        {
-            return false;
-        }
-        Playlist other = (Playlist) o;
-        return (this.id == other.id);
-    }
 }
+
+//    /**
+//     * Checks wheter the object in the parameter is an PlayList object, if not, it returns false, 
+//     * else it returns wheter or not the PlayList object and the parameter object has the same id
+//     * @param o
+//     * @return true or false based on wheter or the two ids are identical
+//     */
+//    @Override
+//    public boolean equals(Object o)
+//    {
+//        if (!(o instanceof Playlist))
+//        {
+//            return false;
+//        }
+//        Playlist other = (Playlist) o;
+//        return (this.id == other.id);
+//    }
+//}

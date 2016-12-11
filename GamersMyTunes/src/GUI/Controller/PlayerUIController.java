@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package GUI.Controller;
 
+import GUI.Controller.PlaylistUIController;
+import GUI.Controller.SongUIController;
 import BE.Music;
 import BE.Playlist;
 import java.net.URL;

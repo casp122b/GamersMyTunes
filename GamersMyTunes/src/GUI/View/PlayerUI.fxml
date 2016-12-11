@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="565.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PlayerUIController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="565.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.PlayerUIController">
    <children>
       <Button fx:id="btnPrev" layoutX="55.0" layoutY="33.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="49.0" text="Prev" />
       <Button fx:id="btnPlay" layoutX="104.0" layoutY="33.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="49.0" text="Play" />
