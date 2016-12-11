@@ -30,6 +30,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -195,6 +196,21 @@ public class PlayerUIController implements Initializable {
     }
     
     @FXML
+    public void handleOnMousePressed(MouseEvent event)
+    {
+        selectedSong = tblSongs.selectionModelProperty().getValue().getSelectedItem();
+        if (event.isPrimaryButtonDown() && event.getClickCount() == 2)
+        {
+            if (selectedSong != null)
+            {
+                musicManager.pauseSong();
+                musicManager.playSong(selectedSong, true);
+                processMediaInfo();
+            }
+        }
+    }
+    
+    @FXML
     public void btnCloseActionPerformed(ActionEvent event) 
     {
         Stage stage = (Stage) btnClose.getScene().getWindow();
@@ -224,6 +240,38 @@ public class PlayerUIController implements Initializable {
         processMediaInfo();
     }
     
+    /**
+     *Deletes the selected song from tblSongs.
+     */
+    @FXML
+    public void btnDeleteSongActionPerformed()
+    {
+        deleteSong();
+
+    }
+    
+    private void deleteSong()
+    {
+        songModel.getSongs().remove(selectedSong);
+        tblSongs.getItems().remove(selectedSong);
+
+    }
+    
+    @FXML
+    public void btnAddToPlaylistActionPerformed(ActionEvent event)
+    {
+        Music mIndex = tblSongs.selectionModelProperty().getValue().getSelectedItem();
+        Playlist pIndex = tblPlaylists.selectionModelProperty().getValue().getSelectedItem();
+        if (mIndex != null && pIndex != null)
+        {
+            Music music = (Music) songModel.getSongs();
+            Playlist playlist = (Playlist) playlistModel.getPlaylists();
+            playlist.addMusic(music);
+
+            playlistModel.updatePlaylistView();
+        }
+    }
+    
     private void processMediaInfo()
     {
         try
@@ -247,5 +295,5 @@ public class PlayerUIController implements Initializable {
         {
 
         }
-    }
+}
 }
