@@ -5,47 +5,50 @@
  */
 package BLL;
 
-import BE.Music;
 import java.util.ArrayList;
 import java.util.List;
+import BE.Music;
 
 /**
+ * Class for filtering in the table of songs.
  *
  * @author Casper & Jens
  */
-public class MusicFilter
-{
-    
+public class MusicFilter {
+
+    private final List<Music> songs;
 
     /**
-     * Will looks at a serach word (query) and filter by that word.
-     * If nothing is written in query, it will return all songs in the table.
-     * @param query
-     * @return filtered list
+     * Constructor for the search class, which takes in the current list of
+     * songs.
+     *
+     * @param songs
      */
-    public static List<Music> getFilteredList(String query)
+    public MusicFilter(List<Music> songs)
     {
-        
-        List<Music> filteredList = new ArrayList<>();
-        List<Music> allSongs = MusicManager.getInstance().getAll();
-        if (!query.equals(""))
+        this.songs = songs;
+    }
+
+    /**
+     * Search in the list of songs, if the song contains the searchQuery.
+     *
+     * @param searchQuery
+     *
+     * @return an ArrayList with the results of songs, which contains the
+     * searchQuery.
+     */
+    public ArrayList<Music> getContains(String searchQuery)
+    {
+        ArrayList<Music> listResult = new ArrayList<>();
+
+        for (Music m : songs)
         {
-            for (Music m : allSongs)
+            if (m.getTitle().toLowerCase().contains(searchQuery) || m.getArtist().toLowerCase().contains(searchQuery) || m.getGenre().toLowerCase().contains(searchQuery))
             {
-                
-                String name = m.getTitle().toLowerCase(); 
-                String artist = m.getArtist().toLowerCase();
-                if (name.contains(query) || artist.contains(query))
-                {
-                    filteredList.add(m);
-                }
+                listResult.add(m);
             }
-            return filteredList;
         }
-        else
-        {
-            return allSongs;
-        }
+        return listResult;
     }
 
 }

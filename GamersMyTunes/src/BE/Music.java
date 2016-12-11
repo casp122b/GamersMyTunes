@@ -169,6 +169,7 @@ public class Music
     
     /**
      * Returns the entire object
+     * @return 
      */
     public Music getMusic()
     {

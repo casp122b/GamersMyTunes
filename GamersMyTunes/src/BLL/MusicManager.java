@@ -6,10 +6,9 @@
 package BLL;
 
 import BE.Music;
-import DAL.MusicPersistentManager;
-import java.io.IOException;
-import java.util.List;
-import javax.management.openmbean.KeyAlreadyExistsException;
+import java.io.File;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 /**
  *
@@ -17,17 +16,9 @@ import javax.management.openmbean.KeyAlreadyExistsException;
  */
 public class MusicManager
 {
-
-    private static final String FILE_NAME = "music.dat";
     private static MusicManager instance = null;
-
-    /**
-     * When a MusicManager is made, a MusicPersistentManager, with the filename as a parameter, is also made
-     */
-    private MusicManager()
-    {
-        mpm = new MusicPersistentManager(FILE_NAME);
-    }
+    private Music currentSong;
+    private MediaPlayer player;
 
     /**
      * If there is no instance, then instance becomes a new MusicManager object, whitch is then returned
@@ -41,112 +32,50 @@ public class MusicManager
         }
         return instance;
     }
-/**
- * Uses the methord in MusicPersistentManager of the same name, if it fails it sends an error message
- * It gets an id, which then returns a Music object with that id
- * @param musicId
- * @return the MusicPersistentManagers getById
- */
-    public Music getById(int musicId)
-    {
-        try
-        {
-            return mpm.getById(musicId);
-        }
-        catch (IOException ex)
-        {
-            throw new MusicAdminException("Unable to fetch music with id: " + musicId);
-        }
-    }
-
+    
     /**
-     * Uses the methord in MusicPersistentManager of the same name, if it fails it sends an error message
-     * It updates the .dat file, inputting a new music object into it
-     * @param updateMusic 
-     */
-    public void updateMusic(Music updateMusic)
-    {
-        try
-        {
-            mpm.updateMusic(updateMusic);
-        }
-        catch (IOException ex)
-        {
-            throw new PlaylistAdminException("Unable to update playlist with id: " + updateMusic.getId());
-        }
-    }
-
-    private final MusicPersistentManager mpm;
-
-    /**
-     * Uses the methord in MusicPersistentManager of the same name, if it fails it sends an error message
-     * It gets all of the objects in the .dat file
-     * @return the list of Music objects
-     */
-    public List<Music> getAll()
-    {
-        try
-        {
-            return mpm.getAll();
-        }
-        catch (IOException ex)
-        {
-            throw new PlaylistAdminException("Unable to fetch music");
-        }
-    }
-
-    /**
-     *  Uses the methord in MusicPersistentManager of the same name, if it fails it sends an error message
-     * It adds the Music object to the .dat file and to an index 
+     * Plays the specified song if any is found.
+     *
      * @param m
-     * @return the Music object with the next id 
+     * @param overwrite
      */
-    public Music addMusic(Music m)
+    public void playSong(Music m, boolean overwrite)
     {
-        try
+        if (currentSong == null || overwrite)
         {
-            return mpm.addMusic(m);
+            currentSong = m;
+            File soundFile = new File(currentSong.getFile());
+            Media media = new Media(soundFile.toURI().toString());
+            player = new MediaPlayer(media);
         }
-        catch (IOException ex)
+        player.play();
+
+    }
+    
+    /**
+     * Pauses the currently playing song.
+     */
+    public void pauseSong()
+    {
+        if (currentSong != null)
         {
-            throw new MusicAdminException("Unable to add music with id: " + m.getId());
+            player.pause();
         }
-        catch (KeyAlreadyExistsException ex)
-        {
-            throw new MusicAdminException(ex.getMessage());
-        }
+    }
+    
+    public MediaPlayer getMediaPlayer()
+    {
+        return player;
+    }
+    
+    /**
+     * Gets the currently playing song.
+     *
+     * @return Returns a song object representing the song currently playing.
+     */
+    public Music getCurrentlyPlayingSong()
+    {
+        return this.currentSong;
     }
 
-    /**
-     * Uses the methord in MusicPersistentManager of the same name, if it fails it sends an error message
-     * Removes a Music object with a matching id from the .dat file and from the index
-     * @param musicId 
-     */
-    public void removeMusic(int musicId)
-    {
-        try
-        {
-            mpm.removeMusic(musicId);
-        }
-        catch (IOException ex)
-        {
-            throw new MusicAdminException("Unable to remove music with id: " + musicId);
-        }
-    }
-
-    /**
-     * Uses the methord in MusicPersistentManager of the same name, if it fails it sends an error message
-     * Writes/Saves to the external files 
-     */
-    public void close()
-    {
-        try
-        {
-            mpm.close();
-        }
-        catch (IOException ex)
-        {
-            throw new PlaylistAdminException("Unable to close ressource");
-        }
-    }
 }

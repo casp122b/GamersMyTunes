@@ -6,129 +6,38 @@
 package BLL;
 
 import BE.Playlist;
-import DAL.PlaylistPersistentsManager;
-import java.io.IOException;
-import java.util.List;
-import javax.management.openmbean.KeyAlreadyExistsException;
+import BE.Music;
 
 /**
+ * This class manages everything regarding the playlists; Creating a new
+ * playlist, editing an existing playlist, adding and removing elements to/from
+ * the playlist.
  *
  * @author Casper & Jens
  */
-public class PlaylistManager
+public class PlaylistManager 
 {
 
-    private static final String FILE_NAME = "playlist.dat";
-    private static PlaylistManager instance = null;
-    private final PlaylistPersistentsManager ppm;
-
     /**
-     * When a MusicManager is made, a MusicPersistentManager, with the filename as a parameter, is also made
+     * Adds a specified song to a specified playlist.
+     *
+     * @param playlist A playlist to add the song to.
+     * @param m
      */
-    private PlaylistManager()
+    public void addSong(Playlist playlist, Music m)
     {
-        ppm = new PlaylistPersistentsManager(FILE_NAME);
+        playlist.getSongList().add(m);
     }
 
     /**
-     * If there is no instance, then instance becomes a new PlaylistManager object, whitch is then returned
-     * @return instance
+     * Removes a specified song from a specified playlist.
+     *
+     * @param playlist A playlist to remove the song from.
+     * @param m
      */
-    public static PlaylistManager getInstance()
+    public void removeSong(Playlist playlist, Music m)
     {
-        if (instance == null)
-        {
-            instance = new PlaylistManager();
-        }
-        return instance;
-    }
-
-    /**
-     * Uses the methord in PlaylistPersistentManager of the same name, if it fails it sends an error message
-     * It updates the .dat file, inputting a new PlayList object into it
-     * @param updatePlaylist 
-     */
-    public void updatePlaylist(Playlist updatePlaylist)
-    {
-        try
-        {
-            ppm.updatePlaylist(updatePlaylist);
-        }
-        catch (IOException ex)
-        {
-            throw new PlaylistAdminException("Unable to update playlist with id: " + updatePlaylist.getId());
-        }
-    }
-
-    /**
-     * Uses the methord in PlaylistPersistentManager of the same name, if it fails it sends an error message
-     * It adds the PlayList object to the .dat file and to an index 
-     * @param aPlaylist
-     * @return the PlayList object with the next id 
-     */
-    public Playlist addPlaylist(Playlist aPlaylist)
-    {
-        try
-        {
-            return ppm.addPlaylist(aPlaylist);
-        }
-        catch (IOException ex)
-        {
-            throw new PlaylistAdminException("Unable to add Playlist with id: " + aPlaylist.getId());
-        }
-        catch (KeyAlreadyExistsException ex)
-        {
-            throw new PlaylistAdminException(ex.getMessage());
-        }
-    }
-
-    /**
-     * Uses the methord in PlaylistPersistentManager of the same name, if it fails it sends an error message
-     * Writes/Saves to the external files 
-     */
-    public void close()
-    {
-        try
-        {
-            ppm.close();
-        }
-        catch (IOException ex)
-        {
-            throw new PlaylistAdminException("Unable to close ressource");
-        }
-    }
-
-    /**
-     * Uses the methord in PlaylistPersistentManager of the same name, if it fails it sends an error message
-     * It gets all of the PlayList objects in the .dat file
-     * @return the list of PlayList objects
-     */
-    public List<Playlist> getAll()
-    {
-        try
-        {
-            return ppm.getAll();
-        }
-        catch (IOException ex)
-        {
-            throw new PlaylistAdminException("Unable to fetch playlist");
-        }
-    }
-
-    /**
-     * Uses the methord in PlaylistPersistentManager of the same name, if it fails it sends an error message
-     * Removes a PlayList object with a matching id from the .dat file and from the index
-     * @param playlistId 
-     */
-    public void removePlaylist(int playlistId)
-    {
-        try
-        {
-            ppm.removePlaylist(playlistId);
-        }
-        catch (IOException ex)
-        {
-            throw new PlaylistAdminException("Unable to remove playlist with id: " + playlistId);
-        }
+        // TODO: Add exception handling.
+        playlist.getSongList().remove(m);
     }
 }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import BE.Playlist;
-import mytunes.dal.PlaylistDAO;
+import DAL.PlaylistDAO;
 
 /**
  *
@@ -19,7 +19,7 @@ import mytunes.dal.PlaylistDAO;
  */
 public class PlaylistModel {
 
-    private PlaylistDAO playlistDAO;
+    private final PlaylistDAO pDAO;
     private static PlaylistModel instance;
 
     ObservableList<Playlist> playlists = FXCollections.observableArrayList();
@@ -36,7 +36,7 @@ public class PlaylistModel {
 
     private PlaylistModel()
     {
-        playlistDAO = new PlaylistDAO();
+        pDAO = new PlaylistDAO();
     }
 
     public void addPlaylist(Playlist playlist)
@@ -73,7 +73,7 @@ public class PlaylistModel {
     public void loadPlaylistData() throws FileNotFoundException
     {
         playlists.clear();
-        playlists.addAll(playlistDAO.readObjectData("PlaylistTest.dat"));
+        playlists.addAll(pDAO.readObjectData("PlaylistTest.dat"));
     }
 
     public void savePlaylistData()
@@ -86,7 +86,7 @@ public class PlaylistModel {
                 playlistToSave.add(playlist);
 
             }
-            playlistDAO.writeObjectData(playlistToSave, "PlaylistTest.dat");
+            pDAO.writeObjectData(playlistToSave, "PlaylistTest.dat");
         }
         catch (IOException ex)
         {

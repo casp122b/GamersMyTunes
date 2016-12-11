@@ -10,18 +10,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import mytunes.be.Song;
-import mytunes.dal.SongDAO;
+import BE.Music;
+import DAL.MusicDAO;
 
 /**
  *
- * @author James
+ * @author Casper & Jens
  */
 public class SongModel {
 
-    private Song contextSong;
+    private Music contextSong;
 
-    private SongDAO songDAO;
+    private final MusicDAO musicDAO;
 
     private static SongModel instance;
 
@@ -36,33 +36,33 @@ public class SongModel {
 
     private SongModel()
     {
-        songDAO = new SongDAO();
+        musicDAO = new MusicDAO();
     }
 
-    ObservableList<Song> songs = FXCollections.observableArrayList();
+    ObservableList<Music> songs = FXCollections.observableArrayList();
 
-    public void addSong(Song song)
+    public void addSong(Music song)
     {
         songs.add(song);
 
     }
 
-    public void editSong(Song contextSong)
+    public void editSong(Music contextSong)
     {
 
         for (int i = 0; i < songs.size(); i++)
         {
 
-            Song song = songs.get(i);
-            if (song.getId() == contextSong.getId())
+            Music m = songs.get(i);
+            if (m.getId() == contextSong.getId())
             {
 
-                song.setTitle(contextSong.getTitle());
-                song.setArtist(contextSong.getArtist());
-                song.setGenre(contextSong.getGenre());
-                song.setRating(contextSong.getRating());
+                m.setTitle(contextSong.getTitle());
+                m.setArtist(contextSong.getArtist());
+                m.setGenre(contextSong.getGenre());
+                m.setTime(contextSong.getTime());
                 //Replace the song
-                songs.set(i, song);
+                songs.set(i, m);
 
             }
 
@@ -70,7 +70,7 @@ public class SongModel {
 
     }
 
-    public ObservableList<Song> getSongs()
+    public ObservableList<Music> getSongs()
     {
         return songs;
     }
@@ -80,13 +80,13 @@ public class SongModel {
 
     }
 
-    public Song getContextSong()
+    public Music getContextSong()
     {
         return contextSong;
 
     }
 
-    public void setContextSong(Song contextSong)
+    public void setContextSong(Music contextSong)
     {
         this.contextSong = contextSong;
     }
@@ -94,19 +94,19 @@ public class SongModel {
     public void loadSongData() throws FileNotFoundException
     {
         songs.clear();
-        songs.addAll(songDAO.readObjectData("SongsData.dat"));
+        songs.addAll(musicDAO.readObjectData("SongsData.dat"));
     }
 
     public void saveSongData()
     {
         try
         {
-            ArrayList<Song> songsToSave = new ArrayList<>();
-            for (Song song : songs)
+            ArrayList<Music> songsToSave = new ArrayList<>();
+            for (Music m : songs)
             {
-                songsToSave.add(song);
+                songsToSave.add(m);
             }
-            songDAO.writeObjectData(songsToSave, "SongsData.dat");
+            musicDAO.writeObjectData(songsToSave, "SongsData.dat");
         }
         catch (IOException ex)
         {

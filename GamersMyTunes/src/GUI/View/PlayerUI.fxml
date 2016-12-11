@@ -11,7 +11,7 @@
 <AnchorPane id="AnchorPane" fx:id="root" prefHeight="565.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.PlayerUIController">
    <children>
       <Button fx:id="btnPrev" layoutX="55.0" layoutY="33.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="49.0" text="Prev" />
-      <Button fx:id="btnPlay" layoutX="104.0" layoutY="33.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="49.0" text="Play" />
+      <Button fx:id="btnPlay" layoutX="104.0" layoutY="33.0" mnemonicParsing="false" onAction="#btnPlayActionPerformed" prefHeight="31.0" prefWidth="49.0" text="Play" />
       <Button fx:id="btnNext" layoutX="153.0" layoutY="33.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="56.0" text="Next" />
       <Button fx:id="btnStop" layoutX="209.0" layoutY="33.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="56.0" text="Stop" />
       <Button fx:id="btnPlaylistNew" layoutX="54.0" layoutY="503.0" mnemonicParsing="false" onAction="#btnPlaylistUINew" text="New" />
@@ -54,7 +54,7 @@
          </columnResizePolicy>
       </TableView>
       <Label fx:id="lblSOP" layoutX="293.0" layoutY="64.0" text="Songs on playlist:" />
-      <Label fx:id="lblPlaylists" layoutX="54.0" layoutY="64.0" prefHeight="17.0" prefWidth="51.0" text="Playlists:" />
+      <Label fx:id="lblPlaylists" layoutX="54.0" layoutY="64.0" prefHeight="21.0" prefWidth="63.0" text="Playlists:" />
       <Label fx:id="lblSongs" layoutX="536.0" layoutY="64.0" text="Songs:" />
       <Label layoutX="808.0" layoutY="41.0" text="Filter:" />
       <TextField fx:id="txtFilter" layoutX="840.0" layoutY="36.0" prefHeight="21.0" prefWidth="96.0" />

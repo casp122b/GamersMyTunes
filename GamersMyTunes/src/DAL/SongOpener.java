@@ -1,167 +1,89 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAL;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Map;
-import javax.sound.sampled.AudioFileFormat;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javazoom.jlgui.basicplayer.BasicPlayer;
-import javazoom.jlgui.basicplayer.BasicPlayerException;
-import javazoom.spi.mpeg.sampled.file.MpegAudioFileReader;
+import org.jaudiotagger.audio.AudioFileIO;
+import org.jaudiotagger.audio.exceptions.CannotReadException;
+import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
+import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
+import org.jaudiotagger.audio.mp3.MP3File;
+import org.jaudiotagger.tag.TagException;
+import org.jaudiotagger.tag.id3.ID3v24Frames;
+import org.jaudiotagger.tag.id3.ID3v24Tag;
 
 /**
+ * Retrieves information about a song from a given path, such as; Title, Artist,
+ * Genre and Song duration.
  *
  * @author Casper & Jens
  */
-public class SongOpener
-{
+public class SongOpener {
 
-    private String filePath;
-    private BasicPlayer bp;
-    private AudioFileFormat aff;
-    private File file;
-    private Map properties;
-    
-    /**
-     * @param filePath 
-     */
+    private MP3File soundFile;
+    private ID3v24Tag soundTag;
 
-    public SongOpener(String filePath)
-    {
-        this.filePath = filePath;
-        bp = new BasicPlayer();
-        file = new File(filePath);
-    }
-    
     /**
-     * If there is a file, it will open it with BasicPlayer lib, get the audio file format.
-     * @throws UnsupportedAudioFileException
+     * Default constructor.
+     *
+     * @param filePath Direct path to the song.
+     * @throws CannotReadException
      * @throws IOException
-     * @throws BasicPlayerException 
+     * @throws TagException
+     * @throws ReadOnlyFileException
+     * @throws InvalidAudioFrameException
      */
-    public void openFromFile() throws UnsupportedAudioFileException, IOException, BasicPlayerException
+    public SongOpener(String filePath) throws CannotReadException, IOException, TagException, ReadOnlyFileException, InvalidAudioFrameException
     {
-        if (file.exists())
-        {
-            bp.open(file);
-            aff = new MpegAudioFileReader().getAudioFileFormat(file);
-            properties = aff.properties();
-        }
-        else
-        {
-            throw new FileNotFoundException("ERROR - File not found");
-        }
+        this.soundFile = (MP3File) AudioFileIO.read(new File(filePath));
+        this.soundTag = soundFile.getID3v2TagAsv24();
     }
-    
-    /**
-     * Will get the duration of a selected song, in microseconds.
-     * @return (long) duration 
-     */
-    public long getDuration()
-    {
-        if (properties.get("duration") != null)
-        {
-            long duration = (long) properties.get("duration");
-            System.out.println(duration + "");
-            return duration;
-        }
-        else
-        {
-            return 0;
-        }
-    }
-    
-    /**
-     * Will convert from microseconds to seconds.
-     * @return duration in seconds
-     */
-    public long getDurationInSeconds()
-    {
-        long duration = (long) properties.get("duration");
-        long durationInSeconds = (duration / 1000000);
-        return durationInSeconds;
-    }
-    
-    /**
-     * Will convert from seconds, to minutes and seconds.
-     * @return duration as a string
-     */
-    public String getDurationToString()
-    {
-        int seconds = (int) getDurationInSeconds();
-        int remainder = seconds % 60;
-        int minutes = (seconds - remainder) / 60;
 
-        if (remainder < 10)
-        {
-            return minutes + ":" + "0" + remainder;
-        }
-        else
-        {
-            return minutes + ":" + remainder;
-        }
-    }
-    
     /**
-     * Reads the title from the audio file.
-     * @return title
+     * Gets the song file's title definition.
+     *
+     * @return Returns a string representing the file's set title.
      */
     public String getTitle()
     {
-            String title = (String) properties.get("title");
-            return title;
+        return soundTag.getFirst(ID3v24Frames.FRAME_ID_TITLE);
     }
-    
+
     /**
-     * Reads the author from the audio file
-     * @return  author
+     * Gets the song file's artist definition.
+     *
+     * @return Returns a string representing the file's set artist.
      */
-    public String getAuthor()
+    public String getArtist()
     {
-            String author = (String) properties.get("author");
-            return author;
+        return soundTag.getFirst(ID3v24Frames.FRAME_ID_ARTIST);
     }
-    
+
     /**
-     * Makes BasicPlayer play songs.
-     * @throws BasicPlayerException 
+     * Gets the song file's genre definition.
+     *
+     * @return Returns a string representing the file's set genre.
      */
-    public void play() throws BasicPlayerException
+    public String getCategory()
     {
-        bp.play();
+        return soundTag.getFirst(ID3v24Frames.FRAME_ID_GENRE);
     }
-    
+
     /**
-     * Makes BasicPlayer pause songs.
-     * @throws BasicPlayerException 
+     * Gets a songs length in total seconds, then converts it to a formatted
+     * string that represents the duration in Minutes:Seconds.
+     *
+     * @return Returns a string value representing the song's duration in
+     * minutes and seconds.
      */
-    public void pause() throws BasicPlayerException
+    public String getTime()
     {
-        bp.pause();
+        int trackLength = soundFile.getAudioHeader().getTrackLength();
+
+        int minutes = trackLength / 60;
+        int seconds = trackLength % 60;
+        String formattedDuration = String.format("%02d:%02d", minutes, seconds);
+
+        return formattedDuration;
     }
-    
-    /**
-     * Makes BasicPlayer resume songs.
-     * @throws BasicPlayerException 
-     */
-    public void resume() throws BasicPlayerException
-    {
-        bp.resume();
-    }
-    
-    /**
-     * Makes BasicPlayer stop songs.
-     * @throws BasicPlayerException 
-     */
-    public void stop() throws BasicPlayerException
-    {
-        bp.stop();
-    }
-    
+
 }

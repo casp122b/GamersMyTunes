@@ -20,6 +20,7 @@ public class Playlist
     private String time;
     private int id;
     private List<Music> musiclist;
+    private List<Music> songList;
 
     /**
      * Takes the parameter object and gives it a new id while keeping the name
@@ -103,7 +104,6 @@ public class Playlist
             }
             catch (NullPointerException ex)
             {
-                ex.printStackTrace();
                 System.err.println("Didn't make id \n" + ex.getMessage() + "\n Couldn't add music file: " + music);
             }
         }
@@ -125,22 +125,14 @@ public class Playlist
     {
         return musiclist;
     }
+    
+    /**
+     * Retrieves all songs added to this playlist.
+     *
+     * @return Returns a list of songs representing the playlist.
+     */
+    public List<Music> getSongList()
+    {
+        return songList;
+    }
 }
-
-//    /**
-//     * Checks wheter the object in the parameter is an PlayList object, if not, it returns false, 
-//     * else it returns wheter or not the PlayList object and the parameter object has the same id
-//     * @param o
-//     * @return true or false based on wheter or the two ids are identical
-//     */
-//    @Override
-//    public boolean equals(Object o)
-//    {
-//        if (!(o instanceof Playlist))
-//        {
-//            return false;
-//        }
-//        Playlist other = (Playlist) o;
-//        return (this.id == other.id);
-//    }
-//}

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="284.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SongUIController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="284.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.SongUIController">
    <children>
       <Text fx:id="lblTitle" layoutX="43.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title:" />
       <Text fx:id="lblArtist" layoutX="37.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Artist:" wrappingWidth="43.3056640625" />

@@ -6,13 +6,14 @@
 package GUI.Controller;
 
 import BE.Music;
-import BLL.SongPlayer;
+import DAL.SongOpener;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,8 +28,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javazoom.jlgui.basicplayer.BasicPlayerException;
+import javafx.stage.Window;
+import org.jaudiotagger.audio.exceptions.CannotReadException;
+import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
+import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
+import org.jaudiotagger.tag.TagException;
 
 /**
  * FXML Controller class
@@ -71,6 +75,7 @@ public class SongUIController implements Initializable {
     @FXML
     private Button btnAdd;
     private PlayerUIController main;
+    private SongOpener so;
 
     /**
      * Initializes the controller class.
@@ -86,39 +91,12 @@ public class SongUIController implements Initializable {
     @FXML
     public void btnBrowseActionPerformed(ActionEvent event) {
     
-    //To open a file using FileChooser first, we create a new FileChooser 
-        FileChooser fc = new FileChooser();
-    //TO set a title to the fileChooser 
-        fc.setTitle("Save File");
-    //TO show the popup window for opening file.
-        File f = fc.showOpenDialog(btnBrowse.getScene().getWindow());
-        f.getAbsolutePath();
-        txtFile.setText(f.getAbsolutePath());
-        SongPlayer sp;
-            try
-            {
-                sp = new SongPlayer(f.toString());
-                txtTitle.setText(sp.getTitle());
-                txtArtist.setText(sp.getAuthor());                
-                txtTime.setText(sp.getDurationToString());
-                txtFile.setText(f.getAbsolutePath());
-            }
-            catch (FileNotFoundException ex)
-            {
-                System.out.println(ex);
-            }
-            catch (BasicPlayerException ex)
-            {
-                System.out.println(ex);
-            }
-            catch (IOException ex)
-            {
-                System.out.println(ex);
-            }
-            catch (UnsupportedAudioFileException ex)
-            {
-                System.out.println(ex);
-            }
+    FileChooser fileChooser = new FileChooser();
+        Window win = root.getScene().getWindow();
+        File file = fileChooser.showOpenDialog(win);
+        txtFile.setText(file.getPath());
+
+        prepopulateFields(file);
         
     }
 
@@ -159,7 +137,7 @@ public class SongUIController implements Initializable {
     }
     
     @FXML
-    private void btnAddCategoryActionPerformed(ActionEvent event)                                               
+    public void btnAddCategoryActionPerformed(ActionEvent event)                                               
     { 
         TextInputDialog dialog = new TextInputDialog("");
         dialog.setTitle("Add a new category");
@@ -175,6 +153,23 @@ public class SongUIController implements Initializable {
 
     void setMainWindow(PlayerUIController aThis) {
         main = aThis;
+    }
+    
+    private void prepopulateFields(File file)
+    {
+
+        try
+        {
+            so = new SongOpener(file.getPath());
+            txtTitle.setText(so.getTitle());
+            txtArtist.setText(so.getArtist());
+            //txtCategory.setText(so.getCategory());
+            txtTime.setText(so.getTime());
+        }
+        catch (CannotReadException | IOException | TagException | ReadOnlyFileException | InvalidAudioFrameException e)
+        {
+            Logger.getLogger(SongUIController.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
     
 }

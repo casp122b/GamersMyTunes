@@ -5,14 +5,19 @@
  */
 package GUI.Controller;
 
-import GUI.Controller.PlaylistUIController;
-import GUI.Controller.SongUIController;
 import BE.Music;
 import BE.Playlist;
+import BLL.MusicManager;
+import BLL.PlaylistManager;
+import GUI.Model.PlaylistModel;
+import GUI.Model.SongModel;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +32,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  *
@@ -65,7 +71,7 @@ public class PlayerUIController implements Initializable {
     @FXML
     private Button btnSongUIDel;
     @FXML
-    private TableView<?> tblSOP;
+    private TableView<Music> tblSOP;
     @FXML
     private TableView<Playlist> tblPlaylists;
     @FXML
@@ -85,6 +91,8 @@ public class PlayerUIController implements Initializable {
     @FXML
     private TableColumn<Playlist, String> playlistsColName;
     @FXML
+    private TableColumn<Playlist, Integer> playlistsColSongs;
+    @FXML
     private TableColumn<Music, String> songsColTitle;
     @FXML
     private TableColumn<Music, String> songsColArtist;
@@ -93,11 +101,30 @@ public class PlayerUIController implements Initializable {
     @FXML
     private TableColumn<Music, String> songsColTime;
     @FXML
-    private TableColumn<?, ?> SOPColTitle;
+    private TableColumn<Music, String> SOPColTitle;
     @FXML
-    private TableColumn<?, ?> SOPColArtist;
-    @FXML
-    private TableColumn<Playlist, Integer> playlistsColSongs;
+    private TableColumn<Music, String> SOPColArtist;
+    
+    private Music selectedSong;
+    private boolean isPlaying;
+    private boolean isMuted;
+    private MusicManager musicManager;
+    private final ObservableList<Music> songsLibrary;
+    private final ObservableList<Music> currentSongsInView;
+    private final ObservableList<Playlist> playlists;
+    private PlaylistManager playlistManager;
+    private SongModel songModel;
+    private PlaylistModel playlistModel;
+    
+    /**
+     * The default contructor for this class.
+     */
+    public PlayerUIController()
+    {
+        this.songsLibrary = FXCollections.observableArrayList();
+        this.currentSongsInView = FXCollections.observableArrayList();
+        this.playlists = FXCollections.observableArrayList();
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -111,10 +138,14 @@ public class PlayerUIController implements Initializable {
             tblPlaylists.setItems(FXCollections.observableArrayList());
             playlistsColName.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
             playlistsColSongs.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getSongs()));
+            isPlaying = false;  
+            
+            musicManager = new MusicManager();
+            playlistManager = new PlaylistManager();
+            songModel = SongModel.getInstance();
+            playlistModel = PlaylistModel.getInstance();
     }
     /**
-     * Clears all ratings.
-     *
      * @param event
      */
     
@@ -122,7 +153,7 @@ public class PlayerUIController implements Initializable {
     public void btnPlaylistUINew(ActionEvent event) throws Exception 
     {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/PlaylistUI.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/PlaylistUI.fxml"));
             Parent root = loader.load();
             PlaylistUIController controller = loader.getController();
             controller.setMainWindow(this);
@@ -149,7 +180,7 @@ public class PlayerUIController implements Initializable {
     public void btnSongUINew(ActionEvent event) throws Exception
     {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/SongUI.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/SongUI.fxml"));
             Parent root = loader.load();
             SongUIController controller = loader.getController();
             controller.setMainWindow(this);
@@ -164,9 +195,57 @@ public class PlayerUIController implements Initializable {
     }
     
     @FXML
-    private void btnCloseActionPerformed(ActionEvent event) 
+    public void btnCloseActionPerformed(ActionEvent event) 
     {
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
+    }
+    
+    @FXML
+    public void btnPlayActionPerformed(ActionEvent event)
+    {
+        // Making sure the song is never null before trying to play a song.
+        if (selectedSong == null)
+        {
+            tblSongs.selectionModelProperty().get().select(0);
+        }
+        
+        selectedSong = tblSongs.selectionModelProperty().getValue().getSelectedItem();
+        //Play button pressed
+        if (!isPlaying)
+        {
+            musicManager.playSong(selectedSong, false);
+        }
+        else
+        {
+            musicManager.pauseSong();
+        }
+
+        processMediaInfo();
+    }
+    
+    private void processMediaInfo()
+    {
+        try
+        {
+            musicManager.getMediaPlayer().currentTimeProperty().addListener(new ChangeListener<Duration>() {
+                @Override
+                public void changed(ObservableValue<? extends Duration> listener, Duration oldVal, Duration newVal) {
+                    ;
+                }
+            });
+            if (!isPlaying)
+            {
+                lblNP.setText(musicManager.getCurrentlyPlayingSong().getTitle());
+            }
+            else
+            {
+                lblNP.setText(musicManager.getCurrentlyPlayingSong().getTitle());
+            }
+        }
+        finally
+        {
+
+        }
     }
 }
