@@ -5,11 +5,15 @@
  */
 
 
+import GUI.Model.PlaylistModel;
+import GUI.Model.SongModel;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 /**
  *
  * @author Casper & Jens
@@ -22,7 +26,15 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
-        
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(final WindowEvent arg0)
+            {
+                SongModel.getInstance().saveSongData();
+                PlaylistModel.getInstance().savePlaylistData();
+                System.exit(0);
+            }
+        });
     }
 
     /**

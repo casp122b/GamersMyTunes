@@ -13,6 +13,8 @@ import GUI.Model.PlaylistModel;
 import GUI.Model.SongModel;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -42,57 +44,57 @@ import javafx.util.Duration;
 public class PlayerUIController implements Initializable {
 
     @FXML
-    private Button btnClose;
+    public Button btnClose;
     @FXML
-    private AnchorPane root;
+    public AnchorPane root;
     @FXML
-    private Button btnPrev;
+    public Button btnPrev;
     @FXML
-    private Button btnPlay;
+    public Button btnPlay;
     @FXML
-    private Button btnNext;
+    public Button btnNext;
     @FXML
-    private Button btnStop;
+    public Button btnStop;
     @FXML
-    private Button btnPlaylistNew;
+    public Button btnPlaylistNew;
     @FXML
-    private Button btnPlaylistEdit;
+    public Button btnPlaylistEdit;
     @FXML
-    private Button btnPlaylistDel;
+    public Button btnPlaylistDel;
     @FXML
-    private Button btnUp;
+    public Button btnUp;
     @FXML
-    private Button btnDown;
+    public Button btnDown;
     @FXML
-    private Button btnDel;
+    public Button btnDel;
     @FXML
-    private Button btnSongUINew;
+    public Button btnSongUINew;
     @FXML
-    private Button btnSongUIEdit;
+    public Button btnSongUIEdit;
     @FXML
-    private Button btnSongUIDel;
+    public Button btnSongUIDel;
     @FXML
-    private TableView<Music> tblSOP;
+    public TableView<Music> tblSOP;
     @FXML
-    private TableView<Playlist> tblPlaylists;
+    public TableView<Playlist> tblPlaylists;
     @FXML
-    private TableView<Music> tblSongs;
+    public TableView<Music> tblSongs;
     @FXML
-    private Label lblSOP;
+    public Label lblSOP;
     @FXML
-    private Label lblPlaylists;
+    public Label lblPlaylists;
     @FXML
-    private Label lblSongs;
+    public Label lblSongs;
     @FXML
-    private TextField txtFilter;
+    public TextField txtFilter;
     @FXML
-    private Slider sliderVolume;
+    public Slider sliderVolume;
     @FXML
-    private Label lblNP;
+    public Label lblNP;
     @FXML
-    private TableColumn<Playlist, String> playlistsColName;
+    public TableColumn<Playlist, String> playlistsColName;
     @FXML
-    private TableColumn<Playlist, Integer> playlistsColSongs;
+    public TableColumn<Playlist, Integer> playlistsColSongs;
     @FXML
     private TableColumn<Music, String> songsColTitle;
     @FXML
@@ -102,17 +104,18 @@ public class PlayerUIController implements Initializable {
     @FXML
     private TableColumn<Music, String> songsColTime;
     @FXML
-    private TableColumn<Music, String> SOPColTitle;
+    public TableColumn<Music, String> SOPColTitle;
     @FXML
-    private TableColumn<Music, String> SOPColArtist;
+    public TableColumn<Music, String> SOPColArtist;
     
     private Music selectedSong;
+    private Playlist selectedPlaylist;
     private boolean isPlaying;
     private boolean isMuted;
     private MusicManager musicManager;
     private final ObservableList<Music> songsLibrary;
-    private final ObservableList<Music> currentSongsInView;
-    private final ObservableList<Playlist> playlists;
+    private ObservableList<Music> currentSongsInView;
+    private ObservableList<Playlist> playlists;
     private PlaylistManager playlistManager;
     private SongModel songModel;
     private PlaylistModel playlistModel;
@@ -139,16 +142,35 @@ public class PlayerUIController implements Initializable {
             tblPlaylists.setItems(FXCollections.observableArrayList());
             playlistsColName.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
             playlistsColSongs.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getSongs()));
-            isPlaying = false;  
-            
+
             musicManager = new MusicManager();
             playlistManager = new PlaylistManager();
             songModel = SongModel.getInstance();
             playlistModel = PlaylistModel.getInstance();
+            isPlaying = false;
+            tblSongs.setItems(songModel.getSongs());
+            tblPlaylists.setItems(playlists);
+            initialLoad();
+            setPlaylists();
+            currentSongsInView = songsLibrary;
     }
     /**
      * @param event
      */
+    
+    private void initialLoad()
+    {
+        try
+        {
+            songModel.loadSongData();
+            playlistModel.loadPlaylistData();
+        }
+        catch (Exception e)
+        {
+            Logger.getLogger(PlayerUIController.class.getName()).log(Level.SEVERE, null, e);
+        }
+        tblSongs.setItems(songModel.getSongs());
+    }
     
     @FXML
     public void btnPlaylistUINew(ActionEvent event) throws Exception 
@@ -244,7 +266,7 @@ public class PlayerUIController implements Initializable {
      *Deletes the selected song from tblSongs.
      */
     @FXML
-    public void btnDeleteSongActionPerformed()
+    public void btnSongUIDelActionPerformed()
     {
         deleteSong();
 
@@ -254,6 +276,24 @@ public class PlayerUIController implements Initializable {
     {
         songModel.getSongs().remove(selectedSong);
         tblSongs.getItems().remove(selectedSong);
+
+    }
+    
+    /**
+     * Deletes the selected playlist from tblPlaylists.
+     */
+    @FXML
+    public void btnPlaylistDelActionPerformed()
+    {
+
+        deletePlaylist();
+
+    }
+    
+    private void deletePlaylist()
+    {
+        playlistModel.getInstance().getPlaylists().remove(selectedPlaylist);
+        tblPlaylists.getItems().remove(selectedPlaylist);
 
     }
     
@@ -270,6 +310,16 @@ public class PlayerUIController implements Initializable {
 
             playlistModel.updatePlaylistView();
         }
+    }
+    
+    public void setSongs()
+    {
+        songsLibrary.addAll(songModel.getSongs());
+    }
+    
+    public void setPlaylists()
+    {
+        playlists = playlistModel.getPlaylists();
     }
     
     private void processMediaInfo()
