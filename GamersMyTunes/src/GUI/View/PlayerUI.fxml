@@ -13,7 +13,7 @@
       <Button fx:id="btnPrev" layoutX="42.0" layoutY="33.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="49.0" text="Prev" />
       <Button fx:id="btnPlay" layoutX="93.0" layoutY="33.0" mnemonicParsing="false" onAction="#btnPlayActionPerformed" prefHeight="31.0" prefWidth="49.0" text="Play" />
       <Button fx:id="btnNext" layoutX="142.0" layoutY="33.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="56.0" text="Next" />
-      <Button fx:id="btnStop" layoutX="200.0" layoutY="33.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="56.0" text="Stop" />
+      <Button fx:id="btnStop" layoutX="200.0" layoutY="33.0" mnemonicParsing="false" onAction="#btnStopActionPerformed" prefHeight="31.0" prefWidth="56.0" text="Stop" />
       <Button fx:id="btnPlaylistNew" layoutX="42.0" layoutY="503.0" mnemonicParsing="false" onAction="#btnPlaylistUINew" text="New" />
       <Button fx:id="btnPlaylistEdit" layoutX="121.0" layoutY="503.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="50.0" text="Edit" />
       <Button fx:id="btnPlaylistDel" layoutX="207.0" layoutY="503.0" mnemonicParsing="false" onAction="#btnPlaylistDelActionPerformed" text="Del" />

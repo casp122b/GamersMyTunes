@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="GamersMyTunes.jar" size="26646" download="eager" />
+    <jar href="GamersMyTunes.jar" size="26727" download="eager" />
     <jar href="lib\basicplayer3.0.jar" size="11093" download="eager" />
     <jar href="lib\jaudiotagger-2.2.6-SNAPSHOT.jar" size="1072785" download="eager" />
   </resources>

@@ -328,6 +328,12 @@ public class PlayerUIController implements Initializable {
         
     }
     
+    @FXML
+    public void btnStopActionPerformed(ActionEvent event)
+    {
+        musicManager.stopSong();
+    }
+    
     private void processMediaInfo()
     {
         try

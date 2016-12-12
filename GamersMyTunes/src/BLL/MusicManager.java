@@ -31,6 +31,7 @@ public class MusicManager
             instance = new MusicManager();
         }
         return instance;
+        
     }
     
     /**
@@ -76,6 +77,14 @@ public class MusicManager
     public Music getCurrentlyPlayingSong()
     {
         return this.currentSong;
+    }
+    
+    public void stopSong()
+    {
+        if (currentSong != null)
+        {
+            player.stop();
+        }
     }
 
 }
