@@ -12,7 +12,6 @@ import BLL.PlaylistManager;
 import GUI.Model.PlaylistModel;
 import GUI.Model.SongModel;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,9 +26,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
@@ -165,7 +162,11 @@ public class PlayerUIController implements Initializable {
         }
         tblSongs.setItems(songModel.getSongs());
     }
-
+    /**
+     * the code to make a new playlist 
+     * @param event
+     * @throws Exception 
+     */
     @FXML
     public void btnPlaylistUINew(ActionEvent event) throws Exception {
         try {
@@ -180,7 +181,10 @@ public class PlayerUIController implements Initializable {
             e.printStackTrace();
         }
     }
-
+    /**
+     * makes it possible to dubbelclick to start and pause the song
+     * @param event 
+     */
     @FXML
     public void handleOnMousePressed(MouseEvent event) {
         selectedSong = tblSongs.selectionModelProperty().getValue().getSelectedItem();
@@ -192,14 +196,20 @@ public class PlayerUIController implements Initializable {
             }
         }
     }
-
+    /**
+     * it is the code that makes the close button work
+     * @param event 
+     */
     @FXML
     public void btnCloseActionPerformed(ActionEvent event) {
         songModel.saveSongData();
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
     }
-
+    /**
+     * makes the play button work
+     * @param event 
+     */
     @FXML
     public void btnPlayActionPerformed(ActionEvent event) {
         // Making sure the song is never null before trying to play a song.
@@ -236,7 +246,10 @@ public class PlayerUIController implements Initializable {
         deletePlaylist();
 
     }
-
+    /**
+     * Makes is possible to add songs from song to playlists
+     * @param event 
+     */
     @FXML
     public void btnAddToPlaylistActionPerformed(ActionEvent event) {
         Music mIndex = tblSongs.selectionModelProperty().getValue().getSelectedItem();
@@ -247,33 +260,51 @@ public class PlayerUIController implements Initializable {
             playlistModel.updatePlaylistView(pIndex.getMusiclist());
         }
     }
-
+    /**
+     * makes the button to change playlist work
+     * @param event 
+     */
     @FXML
     public void tblChangePlaylistActionPerformed(MouseEvent event) {
         Playlist pIndex = tblPlaylists.selectionModelProperty().getValue().getSelectedItem();
         playlistModel.updatePlaylistView(pIndex.getMusiclist());
 
     }
-
+    /**
+     * makes the stop button work
+     * @param event 
+     */
     @FXML
     public void btnStopActionPerformed(ActionEvent event) {
         musicManager.stopSong();
     }
-
+    /**
+     * makes is possible to change the volume on the slider
+     */
     @FXML
     public void handleOnVolumeChanged() {
         musicManager.getMediaPlayer().setVolume(sliderVolume.getValue() / 100);
     }
-
+    /**
+     * makes it possible to add music to songs
+     * @param m 
+     */
     public void addToSongs(Music m) {
         tblSongs.getItems().add(m);
     }
-
+    /**
+     * makes it possible to add playlists
+     * @param pl 
+     */
     public void addToPlaylist(Playlist pl) {
         tblPlaylists.getItems().add(pl);
 
     }
-
+    /**
+     * makes the add new song button works and open up the songUI
+     * @param event
+     * @throws Exception 
+     */
     public void btnTblSongsNewActionPerformed(ActionEvent event) throws Exception {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/SongUI.fxml"));
@@ -300,7 +331,9 @@ public class PlayerUIController implements Initializable {
             }
         }
     }
-
+    /**
+     * makes it possible to delet playlists
+     */
     private void deletePlaylist() 
     {
         for (Playlist pl : tblPlaylists.getItems()) {
@@ -309,15 +342,21 @@ public class PlayerUIController implements Initializable {
             }
         }
     }
-    
+    /**
+     * adds song to songlibrary
+     */
     public void setSongs() {
         songsLibrary.addAll(songModel.getSongs());
     }
-
+    /**
+     * sets the playlist
+     */
     public void setPlaylists() {
         playlists = playlistModel.getPlaylists();
     }
-
+    /**
+     * makes the UI check for any updates
+     */
     private void searchOnUpdate() {
         txtFilter.textProperty().addListener((listener, oldVal, newVal)
                 -> {
@@ -343,7 +382,9 @@ public class PlayerUIController implements Initializable {
             tblSongs.setItems(searchedSongs);
         });
     }
-
+    /**
+     * Makes Mediaplay work
+     */
     private void processMediaInfo() {
         try {
             musicManager.getMediaPlayer().currentTimeProperty().addListener(new ChangeListener<Duration>() {

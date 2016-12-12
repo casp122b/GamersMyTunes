@@ -13,8 +13,6 @@ import javafx.collections.ObservableList;
 import BE.Music;
 import DAL.MusicDAO;
 import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -134,7 +132,9 @@ public class SongModel {
             }
         }
     }
-
+    /**
+     * saves the date that have been enter in SongUI
+     */
     public void saveSongData()
     {
         try

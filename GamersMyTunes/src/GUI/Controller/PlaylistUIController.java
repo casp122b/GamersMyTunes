@@ -47,7 +47,10 @@ public class PlaylistUIController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
+    /**
+     * makes the close button works
+     * @param event 
+     */
     @FXML
     public void btnCancelActionPerformed(ActionEvent event) 
     {
@@ -55,11 +58,17 @@ public class PlaylistUIController implements Initializable {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
-
+    /**
+     * sets main window
+     * @param aThis 
+     */
     void setMainWindow(PlayerUIController aThis) {
         main = aThis;
     }
-    
+    /**
+     * makes the save button in playlist work
+     * @param event 
+     */
     @FXML
     public void btnSaveActionPerformed(ActionEvent event)
     {
@@ -76,7 +85,10 @@ public class PlaylistUIController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "You must input a name for the playlist!").showAndWait();
         }
     }
-    
+    /**
+     * return playlist
+     * @return 
+     */
     public Playlist getPlaylist()
     {
         return playlist;

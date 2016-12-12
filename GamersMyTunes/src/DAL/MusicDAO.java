@@ -32,7 +32,14 @@ public class MusicDAO {
         oos.writeObject(songs);
         }
     }
-
+    /**
+     * Makes a array list to play the music
+     * @param fileName
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     public ArrayList<Music> readObjectData(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException
     {
         ArrayList<Music> songList = new ArrayList<>();

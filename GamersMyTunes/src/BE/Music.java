@@ -187,12 +187,18 @@ public class Music implements Serializable
     {
         return this;
     }
-    
+    /**
+     * 
+     * @returns the rating we the play give it
+     */
     public int getRating()
     {
         return rating;
     }
-    
+    /**
+     * lets the play rate the game
+     * @param rating
+     */
     public void setRating(int rating)
     {
         this.rating = rating;

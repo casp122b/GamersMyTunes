@@ -66,7 +66,10 @@ public class Playlist implements Serializable
     {
         return time;
     }
-
+    /**
+    * sets the name
+    * @param name 
+    */
     public void setName(String name)
     {
         this.name = name;

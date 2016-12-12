@@ -87,7 +87,10 @@ public class SongUIController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         cmbCategory.setItems(list);
     }
-    
+    /**
+     * makes the browse button work
+     * @param event 
+     */
     @FXML
     public void btnBrowseActionPerformed(ActionEvent event) {
     
@@ -99,13 +102,19 @@ public class SongUIController implements Initializable {
         prepopulateFields(file);
         
     }
-
+    /**
+     * makes the cancel button work
+     * @param event 
+     */
     @FXML
     public void btnCancelActionPerformed(ActionEvent event) {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
-    
+    /**
+     * makes the save button work
+     * @param event 
+     */
     @FXML
     public void btnSaveActionPerformed(ActionEvent event)
     {
@@ -135,7 +144,10 @@ public class SongUIController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "You must load a valid music file!").showAndWait();
         }
     }
-    
+    /**
+     * makes it possible to make new category and add a category to the song
+     * @param event 
+     */
     @FXML
     public void btnAddCategoryActionPerformed(ActionEvent event)                                               
     { 
@@ -150,11 +162,17 @@ public class SongUIController implements Initializable {
             cmbCategory.getItems().add(result.get());
         }
     }    
-
+    /**
+     * sets the main window
+     * @param aThis 
+     */
     void setMainWindow(PlayerUIController aThis) {
         main = aThis;
     }
-    
+    /**
+     * this will try to take the information from the song file there have been chosen
+     * @param file 
+     */
     private void prepopulateFields(File file)
     {
 
