@@ -320,6 +320,14 @@ public class PlayerUIController implements Initializable {
         playlists = playlistModel.getPlaylists();
     }
     
+    @FXML
+    public void tblChangePlaylistActionPerformed(MouseEvent event)
+    {
+        Playlist pIndex = tblPlaylists.selectionModelProperty().getValue().getSelectedItem();
+        playlistModel.updatePlaylistView(pIndex.getMusiclist());
+        
+    }
+    
     private void processMediaInfo()
     {
         try

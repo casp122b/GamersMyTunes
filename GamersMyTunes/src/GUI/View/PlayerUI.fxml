@@ -24,7 +24,7 @@
       <Button fx:id="btnSongUIEdit" layoutX="691.0" layoutY="503.0" mnemonicParsing="false" text="Edit" />
       <Button fx:id="btnSongUIDel" layoutX="837.0" layoutY="503.0" mnemonicParsing="false" onAction="#btnSongUIDelActionPerformed" text="Delete" />
       <Button fx:id="btnClose" layoutX="900.0" layoutY="536.0" mnemonicParsing="false" onAction="#btnCloseActionPerformed" text="Close" />
-      <TableView fx:id="tblPlaylists" layoutX="42.0" layoutY="84.0" onMousePressed="#handleOnMousePressed" prefHeight="419.0" prefWidth="207.0">
+      <TableView fx:id="tblPlaylists" layoutX="42.0" layoutY="84.0" onMousePressed="#tblChangePlaylistActionPerformed" prefHeight="419.0" prefWidth="207.0">
         <columns>
           <TableColumn fx:id="playlistsColName" prefWidth="75.0" text="Name" />
           <TableColumn fx:id="playlistsColSongs" prefWidth="75.0" text="Songs" />
@@ -33,7 +33,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TableView fx:id="tblSOP" layoutX="293.0" layoutY="84.0" onMousePressed="#handleOnMousePressed" prefHeight="419.0" prefWidth="214.0">
+      <TableView fx:id="tblSOP" layoutX="293.0" layoutY="84.0" prefHeight="419.0" prefWidth="214.0">
         <columns>
           <TableColumn fx:id="SOPColTitle" prefWidth="75.0" text="Title" />
             <TableColumn fx:id="SOPColArtist" prefWidth="75.0" text="Artist" />
