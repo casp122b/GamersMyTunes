@@ -12,6 +12,7 @@ import BLL.PlaylistManager;
 import GUI.Model.PlaylistModel;
 import GUI.Model.SongModel;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +27,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
@@ -91,7 +94,13 @@ public class PlayerUIController implements Initializable {
     public TableColumn<Music, String> SOPColTitle;
     @FXML
     public TableColumn<Music, String> SOPColArtist;
-
+    @FXML
+    private Button btnPlaylistDelete;
+    @FXML
+    private Button btnAddToPlaylist;
+    @FXML
+    private Label lblNowPlaying;
+    
     private Music selectedSong;
     private Playlist selectedPlaylist;
     private boolean isPlaying;
@@ -102,12 +111,6 @@ public class PlayerUIController implements Initializable {
     private PlaylistManager playlistManager;
     private SongModel songModel;
     private PlaylistModel playlistModel;
-    @FXML
-    private Button btnPlaylistDelete;
-    @FXML
-    private Button btnAddToPlaylist;
-    @FXML
-    private Label lblNowPlaying;
 
     /**
      * The default contructor for this class.
@@ -153,7 +156,6 @@ public class PlayerUIController implements Initializable {
     /**
      * @param event
      */
-
     private void initialLoad() {
         try {
             songModel.loadSongData();
@@ -299,14 +301,15 @@ public class PlayerUIController implements Initializable {
         }
     }
 
-    private void deletePlaylist() {
+    private void deletePlaylist() 
+    {
         for (Playlist pl : tblPlaylists.getItems()) {
             if (pl.getName() == selectedPlaylist.getName()) {
                 tblPlaylists.getItems().remove(selectedPlaylist);
             }
         }
     }
-
+    
     public void setSongs() {
         songsLibrary.addAll(songModel.getSongs());
     }
