@@ -5,11 +5,13 @@
  */
 package BE;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Casper & Jens
  */
-public class Music
+public class Music implements Serializable
 {
 
     private String title;

@@ -5,6 +5,7 @@
  */
 package BE;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author Casper & Jens
  */
-public class Playlist
+public class Playlist implements Serializable
 {
 
     private String name;

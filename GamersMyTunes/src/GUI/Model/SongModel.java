@@ -12,6 +12,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import BE.Music;
 import DAL.MusicDAO;
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -118,10 +121,18 @@ public class SongModel {
      * Clears the 
      * @throws FileNotFoundException 
      */
-    public void loadSongData() throws FileNotFoundException
+    public void loadSongData() throws FileNotFoundException, IOException, ClassNotFoundException
     {
         songs.clear();
-        songs.addAll(musicDAO.readObjectData("SongsData.dat"));
+        try {
+            songs.addAll(musicDAO.readObjectData("SongsData.dat"));
+        } catch (FileNotFoundException ex) {
+            File songDataFile = new File("SongsData.dat");
+            if(!songDataFile.exists())
+            {
+                songDataFile.createNewFile();
+            }
+        }
     }
 
     public void saveSongData()

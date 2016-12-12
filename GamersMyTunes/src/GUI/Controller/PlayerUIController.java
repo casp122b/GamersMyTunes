@@ -130,6 +130,11 @@ public class PlayerUIController implements Initializable {
         this.playlists = FXCollections.observableArrayList();
     }
     
+    /**
+     * This method initializes all its content, when PlayerUIController is launched.
+     * @param url
+     * @param rb 
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
@@ -235,6 +240,7 @@ public class PlayerUIController implements Initializable {
     @FXML
     public void btnCloseActionPerformed(ActionEvent event) 
     {
+        songModel.saveSongData();
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
     }

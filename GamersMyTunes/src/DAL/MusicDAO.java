@@ -25,15 +25,15 @@ public class MusicDAO {
 
     public void writeObjectData(ArrayList<Music> songs, String fileName) throws IOException
     {
-        FileOutputStream fos = new FileOutputStream(fileName);
-        BufferedOutputStream bos = new BufferedOutputStream(fos);
-        try (ObjectOutputStream oos = new ObjectOutputStream(fos))
+        try (FileOutputStream fos = new FileOutputStream(fileName))
         {
-            oos.writeObject(songs);
+        BufferedOutputStream bos = new BufferedOutputStream(fos);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(songs);
         }
     }
 
-    public ArrayList<Music> readObjectData(String fileName) throws FileNotFoundException
+    public ArrayList<Music> readObjectData(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException
     {
         ArrayList<Music> songList = new ArrayList<>();
 
@@ -44,11 +44,7 @@ public class MusicDAO {
 
             songList = (ArrayList<Music>) ois.readObject();
         }
-        catch (IOException | ClassNotFoundException ex)
-        {
-            // Handle exception
-        }
-
+        
         return songList;
     }
 }

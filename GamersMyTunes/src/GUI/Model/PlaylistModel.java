@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import BE.Playlist;
 import DAL.PlaylistDAO;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -27,27 +28,22 @@ public class PlaylistModel {
     final ObservableList<Playlist> playlists = FXCollections.observableArrayList();
     final ObservableList<Music> songsOnPlaylist = FXCollections.observableArrayList();
 
-    public static PlaylistModel getInstance()
-    {
-        if (instance == null)
-        {
+    public static PlaylistModel getInstance() {
+        if (instance == null) {
             instance = new PlaylistModel();
         }
         return instance;
     }
 
-    private PlaylistModel()
-    {
+    private PlaylistModel() {
         pDAO = new PlaylistDAO();
     }
 
-    public void addPlaylist(Playlist playlist)
-    {
+    public void addPlaylist(Playlist playlist) {
         playlists.add(playlist);
     }
 
-    public ObservableList<Playlist> getPlaylists()
-    {
+    public ObservableList<Playlist> getPlaylists() {
         return playlists;
     }
 
@@ -60,38 +56,37 @@ public class PlaylistModel {
 //        }
 //
 //    }
-
-    public ObservableList<Music> getSongsOnPlaylist()
-    {
+    public ObservableList<Music> getSongsOnPlaylist() {
         return songsOnPlaylist;
     }
 
-    public void updatePlaylistView(List<Music> songsOnPlaylist)
-    {
+    public void updatePlaylistView(List<Music> songsOnPlaylist) {
         this.songsOnPlaylist.clear();
         this.songsOnPlaylist.addAll(songsOnPlaylist);
+        playlists.set(0, playlists.get(0));
     }
 
-    public void loadPlaylistData() throws FileNotFoundException
-    {
+    public void loadPlaylistData() throws FileNotFoundException, IOException {
         playlists.clear();
-        playlists.addAll(pDAO.readObjectData("PlaylistTest.dat"));
+        try {
+            playlists.addAll(pDAO.readObjectData("PlaylistTest.dat"));
+        } catch (FileNotFoundException e) {
+            File playlistDataFile = new File("PlaylistTest.dat");
+            if (!playlistDataFile.exists()) {
+                playlistDataFile.createNewFile();
+            }
+        }
     }
 
-    public void savePlaylistData()
-    {
-        try
-        {
+    public void savePlaylistData() {
+        try {
             ArrayList<Playlist> playlistToSave = new ArrayList<>();
-            for (Playlist playlist : playlists)
-            {
+            for (Playlist playlist : playlists) {
                 playlistToSave.add(playlist);
 
             }
             pDAO.writeObjectData(playlistToSave, "PlaylistTest.dat");
-        }
-        catch (IOException ex)
-        {
+        } catch (IOException ex) {
             // TODO: exception handling.
         }
     }
