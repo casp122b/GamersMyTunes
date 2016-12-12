@@ -60,6 +60,6 @@
       <TextField fx:id="txtFilter" layoutX="804.0" layoutY="37.0" prefHeight="21.0" prefWidth="96.0" />
       <Slider fx:id="sliderVolume" layoutX="334.0" layoutY="43.0" />
       <Label fx:id="lblNP" layoutX="507.0" layoutY="42.0" prefHeight="21.0" prefWidth="225.0" text="Now playing: " />
-      <Button fx:id="btnAddToPlaylist" layoutX="506.0" layoutY="84.0" mnemonicParsing="false" onMousePressed="#btnAddToPlaylistActionPerformed" prefHeight="31.0" prefWidth="42.0" text="&lt;-" />
+      <Button fx:id="btnAddToPlaylist" layoutX="506.0" layoutY="84.0" mnemonicParsing="false" onAction="#btnAddToPlaylistActionPerformed" prefHeight="31.0" prefWidth="42.0" text="&lt;-" />
    </children>
 </AnchorPane>

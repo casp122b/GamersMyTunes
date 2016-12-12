@@ -33,20 +33,31 @@ public class SongModel {
         }
         return instance;
     }
-
+    
+    /**
+     * Constructer for SongModel.
+     */
     private SongModel()
     {
         musicDAO = new MusicDAO();
     }
-
+    
+    //creates an arraylist of Music.
     ObservableList<Music> songs = FXCollections.observableArrayList();
 
-    public void addSong(Music song)
+    /**
+     * Method for adding songs to the Music ArrayList. 
+     * @param m
+     */
+    public void addSong(Music m)
     {
-        songs.add(song);
-
+        songs.add(m);
     }
-
+    
+    /**
+     * This method makes it possible to edit song info.
+     * @param contextSong 
+     */
     public void editSong(Music contextSong)
     {
 
@@ -70,6 +81,10 @@ public class SongModel {
 
     }
 
+    /**
+     * Gets the Music ArrayList.
+     * @return 
+     */
     public ObservableList<Music> getSongs()
     {
         return songs;
@@ -80,17 +95,29 @@ public class SongModel {
 
     }
 
+    /**
+     * Returns the value of contextSong.
+     * @return 
+     */
     public Music getContextSong()
     {
         return contextSong;
 
     }
 
-    public void setContextSong(Music contextSong)
+    /**
+     * Method for setting the contextSong. 
+     * @param m
+     */
+    public void setContextSong(Music m)
     {
-        this.contextSong = contextSong;
+        this.contextSong = m;
     }
 
+    /**
+     * Clears the 
+     * @throws FileNotFoundException 
+     */
     public void loadSongData() throws FileNotFoundException
     {
         songs.clear();

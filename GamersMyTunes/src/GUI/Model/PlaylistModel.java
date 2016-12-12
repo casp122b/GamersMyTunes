@@ -5,6 +5,7 @@
  */
 package GUI.Model;
 
+import BE.Music;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import BE.Playlist;
 import DAL.PlaylistDAO;
+import java.util.List;
 
 /**
  *
@@ -22,8 +24,8 @@ public class PlaylistModel {
     private final PlaylistDAO pDAO;
     private static PlaylistModel instance;
 
-    ObservableList<Playlist> playlists = FXCollections.observableArrayList();
-    ObservableList<String> playlistTitles = FXCollections.observableArrayList();
+    final ObservableList<Playlist> playlists = FXCollections.observableArrayList();
+    final ObservableList<Music> songsOnPlaylist = FXCollections.observableArrayList();
 
     public static PlaylistModel getInstance()
     {
@@ -49,25 +51,25 @@ public class PlaylistModel {
         return playlists;
     }
 
-    public void setPlaylistNames()
-    {
-        playlistTitles.clear();
-        for (Playlist playlist : playlists)
-        {
-            playlistTitles.add(playlist.getName());
-        }
+//    public void setPlaylistNames()
+//    {
+//        playlistTitles.clear();
+//        for (Playlist playlist : playlists)
+//        {
+//            playlistTitles.add(playlist.getName());
+//        }
+//
+//    }
 
+    public ObservableList<Music> getSongsOnPlaylist()
+    {
+        return songsOnPlaylist;
     }
 
-    public ObservableList<String> getPlaylistTitles()
+    public void updatePlaylistView(List<Music> songsOnPlaylist)
     {
-        setPlaylistNames();
-        return playlistTitles;
-    }
-
-    public void updatePlaylistView()
-    {
-
+        this.songsOnPlaylist.clear();
+        this.songsOnPlaylist.addAll(songsOnPlaylist);
     }
 
     public void loadPlaylistData() throws FileNotFoundException

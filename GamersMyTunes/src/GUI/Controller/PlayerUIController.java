@@ -133,15 +133,14 @@ public class PlayerUIController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-            tblSongs.setItems(FXCollections.observableArrayList());
             songsColTitle.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getTitle()));
             songsColArtist.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getArtist()));
             songsColCategory.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getGenre()));
             songsColTime.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getTime()));
-            
-            tblPlaylists.setItems(FXCollections.observableArrayList());
             playlistsColName.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getName()));
             playlistsColSongs.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getSongs()));
+            SOPColTitle.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getTitle()));
+            SOPColArtist.setCellValueFactory(value -> new SimpleObjectProperty<>(value.getValue().getArtist()));
 
             musicManager = new MusicManager();
             playlistManager = new PlaylistManager();
@@ -149,7 +148,8 @@ public class PlayerUIController implements Initializable {
             playlistModel = PlaylistModel.getInstance();
             isPlaying = false;
             tblSongs.setItems(songModel.getSongs());
-            tblPlaylists.setItems(playlists);
+            tblPlaylists.setItems(playlistModel.getPlaylists());
+            tblSOP.setItems(playlistModel.getSongsOnPlaylist());
             initialLoad();
             setPlaylists();
             currentSongsInView = songsLibrary;
@@ -304,11 +304,9 @@ public class PlayerUIController implements Initializable {
         Playlist pIndex = tblPlaylists.selectionModelProperty().getValue().getSelectedItem();
         if (mIndex != null && pIndex != null)
         {
-            Music music = (Music) songModel.getSongs();
-            Playlist playlist = (Playlist) playlistModel.getPlaylists();
-            playlist.addMusic(music);
+            pIndex.addMusic(mIndex);
 
-            playlistModel.updatePlaylistView();
+            playlistModel.updatePlaylistView(pIndex.getMusiclist());
         }
     }
     
