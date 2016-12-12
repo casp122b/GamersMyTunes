@@ -16,21 +16,10 @@ public class Playlist
 {
 
     private String name;
-    private int songs;
     private String time;
     private int id;
     private List<Music> musiclist;
     private List<Music> songList;
-
-    /**
-     * Takes the parameter object and gives it a new id while keeping the name
-     * @param id
-     * @param p
-     */
-    public Playlist(int id, Playlist p)
-    {
-        this(id, p.getName());
-    }
 
     /**
      *  Creates a Playlist object with an id of -1
@@ -96,8 +85,7 @@ public class Playlist
      */
     public void addMusic(Music music)
     {
-        if (!musiclist.contains(music))
-        {
+
             try
             {
                 musiclist.add(music);
@@ -106,7 +94,7 @@ public class Playlist
             {
                 System.err.println("Didn't make id \n" + ex.getMessage() + "\n Couldn't add music file: " + music);
             }
-        }
+        
     }
 
     /**
