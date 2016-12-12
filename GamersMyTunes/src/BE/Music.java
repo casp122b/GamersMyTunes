@@ -20,6 +20,7 @@ public class Music implements Serializable
     private String time;
     private String file;
     private int id;
+    private int rating;
 
     /**
      * Constructor for creating a new Music object, where it takes its private variables and sets them to the parameters
@@ -38,6 +39,7 @@ public class Music implements Serializable
         this.category = category;
         this.time = time;
         this.file = file;
+        this.rating = rating;
     }
 
     /**
@@ -136,6 +138,14 @@ public class Music implements Serializable
     {
         this.title = title;
     }
+    
+    /**
+     * @param id
+     */
+    public void setId(int id)
+    {
+        this.id = id;
+    }
 
     /**
      * @param genre the genre to set
@@ -176,6 +186,16 @@ public class Music implements Serializable
     public Music getMusic()
     {
         return this;
+    }
+    
+    public int getRating()
+    {
+        return rating;
+    }
+    
+    public void setRating(int rating)
+    {
+        this.rating = rating;
     }
 
 }

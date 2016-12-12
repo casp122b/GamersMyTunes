@@ -158,6 +158,8 @@ public class PlayerUIController implements Initializable {
             initialLoad();
             setPlaylists();
             currentSongsInView = songsLibrary;
+            searchOnUpdate();
+            processVolumeData();
     }
     /**
      * @param event
@@ -282,7 +284,6 @@ public class PlayerUIController implements Initializable {
     {
         songModel.getSongs().remove(selectedSong);
         tblSongs.getItems().remove(selectedSong);
-
     }
     
     /**
@@ -338,6 +339,49 @@ public class PlayerUIController implements Initializable {
     public void btnStopActionPerformed(ActionEvent event)
     {
         musicManager.stopSong();
+    }
+    
+    private void searchOnUpdate()
+    {
+        txtFilter.textProperty().addListener((listener, oldVal, newVal)
+                -> 
+                {
+                    ObservableList<Music> searchedSongs = FXCollections.observableArrayList();
+                    searchedSongs.clear();
+                    ObservableList<Music> allSongsInCurrentView = currentSongsInView;
+                    if (selectedPlaylist == null)
+                    {
+                        allSongsInCurrentView.setAll(songModel.getSongs());
+                    }
+                    else
+                    {
+                        allSongsInCurrentView.setAll(selectedPlaylist.getSongList());
+                    }
+
+                    for (Music m : allSongsInCurrentView)
+                    {
+                        if (m.getTitle().trim().toLowerCase().contains(newVal.trim().toLowerCase())
+                                || m.getArtist().trim().toLowerCase().contains(newVal.trim().toLowerCase())
+                                || m.getGenre().trim().toLowerCase().contains(newVal.trim().toLowerCase())
+                                || String.valueOf(m.getRating()).trim().toLowerCase().contains(newVal.trim().toLowerCase())
+                                && !searchedSongs.contains(m))
+                        {
+                            searchedSongs.add(m);
+                        }
+                    }
+
+                    tblSongs.setItems(searchedSongs);
+        });
+    }
+    
+    private void processVolumeData()
+    {
+        sliderVolume.valueProperty().addListener(listener
+                -> 
+                {
+                    musicManager.getMediaPlayer().setVolume(sliderVolume.getValue() / 100);
+                    isMuted = false;
+        });
     }
     
     private void processMediaInfo()
