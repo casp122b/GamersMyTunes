@@ -57,32 +57,32 @@ public class SongModel {
         songs.add(m);
     }
     
-    /**
-     * This method makes it possible to edit song info.
-     * @param contextSong 
-     */
-    public void editSong(Music contextSong)
-    {
-
-        for (int i = 0; i < songs.size(); i++)
-        {
-
-            Music m = songs.get(i);
-            if (m.getId() == contextSong.getId())
-            {
-
-                m.setTitle(contextSong.getTitle());
-                m.setArtist(contextSong.getArtist());
-                m.setGenre(contextSong.getGenre());
-                m.setTime(contextSong.getTime());
-                //Replace the song
-                songs.set(i, m);
-
-            }
-
-        }
-
-    }
+//    /**
+//     * This method makes it possible to edit song info.
+//     * @param contextSong 
+//     */
+//    public void editSong(Music contextSong)
+//    {
+//
+//        for (int i = 0; i < songs.size(); i++)
+//        {
+//
+//            Music m = songs.get(i);
+//            if (m.getId() == contextSong.getId())
+//            {
+//
+//                m.setTitle(contextSong.getTitle());
+//                m.setArtist(contextSong.getArtist());
+//                m.setGenre(contextSong.getGenre());
+//                m.setTime(contextSong.getTime());
+//                //Replace the song
+//                songs.set(i, m);
+//
+//            }
+//
+//        }
+//
+//    }
 
     /**
      * Gets the Music ArrayList.

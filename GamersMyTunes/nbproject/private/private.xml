@@ -2,6 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Caspe/Desktop/GamersMyTunes/GamersMyTunes/src/GUI/Controller/PlayerUIController.java</file>
+            <file>file:/C:/Users/Caspe/Desktop/GamersMyTunes/GamersMyTunes/src/GUI/Model/SongModel.java</file>
+            <file>file:/C:/Users/Caspe/Desktop/GamersMyTunes/GamersMyTunes/src/BE/Playlist.java</file>
+            <file>file:/C:/Users/Caspe/Desktop/GamersMyTunes/GamersMyTunes/src/BE/Music.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -159,7 +159,6 @@ public class PlayerUIController implements Initializable {
             setPlaylists();
             currentSongsInView = songsLibrary;
             searchOnUpdate();
-            processVolumeData();
     }
     /**
      * @param event
@@ -280,8 +279,13 @@ public class PlayerUIController implements Initializable {
 
     }
     
+    /**
+     * If there is a song currently playing, it will be stopped,
+     * and the selected song is deleted from tblSongs.
+     */
     private void deleteSong()
     {
+        musicManager.stopSong();
         songModel.getSongs().remove(selectedSong);
         tblSongs.getItems().remove(selectedSong);
     }
@@ -341,6 +345,12 @@ public class PlayerUIController implements Initializable {
         musicManager.stopSong();
     }
     
+    @FXML
+    public void handleOnVolumeChanged()
+    {
+    musicManager.getMediaPlayer().setVolume(sliderVolume.getValue() / 100);
+    }
+    
     private void searchOnUpdate()
     {
         txtFilter.textProperty().addListener((listener, oldVal, newVal)
@@ -373,17 +383,7 @@ public class PlayerUIController implements Initializable {
                     tblSongs.setItems(searchedSongs);
         });
     }
-    
-    private void processVolumeData()
-    {
-        sliderVolume.valueProperty().addListener(listener
-                -> 
-                {
-                    musicManager.getMediaPlayer().setVolume(sliderVolume.getValue() / 100);
-                    isMuted = false;
-        });
-    }
-    
+
     private void processMediaInfo()
     {
         try
