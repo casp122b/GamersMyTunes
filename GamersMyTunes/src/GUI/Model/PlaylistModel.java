@@ -55,15 +55,6 @@ public class PlaylistModel {
         return playlists;
     }
 
-//    public void setPlaylistNames()
-//    {
-//        playlistTitles.clear();
-//        for (Playlist playlist : playlists)
-//        {
-//            playlistTitles.add(playlist.getName());
-//        }
-//
-//    }
     /**
      * makes a observablelist called Music
      * @return 

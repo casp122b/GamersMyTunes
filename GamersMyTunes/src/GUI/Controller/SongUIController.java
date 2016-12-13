@@ -145,7 +145,8 @@ public class SongUIController implements Initializable {
         }
     }
     /**
-     * makes it possible to make new category and add a category to the song
+     * makes it possible to make a new category and add it to the combobox
+     * observablelist array.
      * @param event 
      */
     @FXML

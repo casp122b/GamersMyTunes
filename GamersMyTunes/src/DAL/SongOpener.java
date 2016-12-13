@@ -19,8 +19,8 @@ import org.jaudiotagger.tag.id3.ID3v24Tag;
  */
 public class SongOpener {
 
-    private MP3File soundFile;
-    private ID3v24Tag soundTag;
+    private final MP3File soundFile;
+    private final ID3v24Tag soundTag;
 
     /**
      * Default constructor.

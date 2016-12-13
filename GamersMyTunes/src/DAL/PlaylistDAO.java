@@ -22,7 +22,13 @@ import BE.Playlist;
  * @author Casper & Jens
  */
 public class PlaylistDAO {
-
+    
+    /**
+     * This method writes a playlist and stores it on the harddrive.
+     * @param associationHashMap
+     * @param fileName
+     * @throws IOException 
+     */
     public void writeObjectData(ArrayList<Playlist> associationHashMap, String fileName) throws IOException
     {
         FileOutputStream fos = new FileOutputStream(fileName);
@@ -33,6 +39,12 @@ public class PlaylistDAO {
         }
     }
 
+    /**
+     * This method reads a playlist in form of data from the harddrive.
+     * @param fileName
+     * @return
+     * @throws FileNotFoundException 
+     */
     public ArrayList<Playlist> readObjectData(String fileName) throws FileNotFoundException
     {
         ArrayList<Playlist> playlists = new ArrayList<>();

@@ -48,7 +48,7 @@ public class PlaylistUIController implements Initializable {
         // TODO
     }    
     /**
-     * makes the close button works
+     * makes the cancel button work.
      * @param event 
      */
     @FXML
@@ -66,7 +66,10 @@ public class PlaylistUIController implements Initializable {
         main = aThis;
     }
     /**
-     * makes the save button in playlist work
+     * Gets and trims the typed text from txtPlaylistName.
+     * If the textfield is not empty, it creates a new playlist,
+     * adds it to the observablelist Playlist in BE.Playlist,
+     * gets the currently open window and closes it.
      * @param event 
      */
     @FXML

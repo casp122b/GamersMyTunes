@@ -21,7 +21,7 @@ public class MusicManager
     private MediaPlayer player;
 
     /**
-     * If there is no instance, then instance becomes a new MusicManager object, whitch is then returned
+     * If there is no instance, then instance becomes a new MusicManager object, which is then returned
      * @return instance
      */
     public static MusicManager getInstance()

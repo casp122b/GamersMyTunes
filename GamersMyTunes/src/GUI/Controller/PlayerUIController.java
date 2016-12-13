@@ -151,6 +151,7 @@ public class PlayerUIController implements Initializable {
     }
 
     /**
+     * This method is loaded before everything else.
      * @param event
      */
     private void initialLoad() {
@@ -182,7 +183,7 @@ public class PlayerUIController implements Initializable {
         }
     }
     /**
-     * makes it possible to dubbelclick to start and pause the song
+     * makes it possible to doubleclick in tblSongs and play a specific song.
      * @param event 
      */
     @FXML
@@ -197,7 +198,7 @@ public class PlayerUIController implements Initializable {
         }
     }
     /**
-     * it is the code that makes the close button work
+     * This method terminates PlayerUI.
      * @param event 
      */
     @FXML
@@ -247,7 +248,7 @@ public class PlayerUIController implements Initializable {
 
     }
     /**
-     * Makes is possible to add songs from song to playlists
+     * Makes is possible to add songs from tblSOP.
      * @param event 
      */
     @FXML
@@ -261,7 +262,7 @@ public class PlayerUIController implements Initializable {
         }
     }
     /**
-     * makes the button to change playlist work
+     * makes the button to change playlists work.
      * @param event 
      */
     @FXML
@@ -271,7 +272,7 @@ public class PlayerUIController implements Initializable {
 
     }
     /**
-     * makes the stop button work
+     * makes the stop button work.
      * @param event 
      */
     @FXML
@@ -279,21 +280,21 @@ public class PlayerUIController implements Initializable {
         musicManager.stopSong();
     }
     /**
-     * makes is possible to change the volume on the slider
+     * makes is possible to change the volume on the slider.
      */
     @FXML
     public void handleOnVolumeChanged() {
         musicManager.getMediaPlayer().setVolume(sliderVolume.getValue() / 100);
     }
     /**
-     * makes it possible to add music to songs
+     * makes it possible to add music to songs.
      * @param m 
      */
     public void addToSongs(Music m) {
         tblSongs.getItems().add(m);
     }
     /**
-     * makes it possible to add playlists
+     * makes it possible to add playlists.
      * @param pl 
      */
     public void addToPlaylist(Playlist pl) {
@@ -301,7 +302,7 @@ public class PlayerUIController implements Initializable {
 
     }
     /**
-     * makes the add new song button works and open up the songUI
+     * Opens SongUI.
      * @param event
      * @throws Exception 
      */
@@ -355,7 +356,8 @@ public class PlayerUIController implements Initializable {
         playlists = playlistModel.getPlaylists();
     }
     /**
-     * makes the UI check for any updates
+     * When letters are typed in the search box, it searches through
+     * tblSongs for matching letters.
      */
     private void searchOnUpdate() {
         txtFilter.textProperty().addListener((listener, oldVal, newVal)
@@ -383,7 +385,7 @@ public class PlayerUIController implements Initializable {
         });
     }
     /**
-     * Makes Mediaplay work
+     * Displays the currently playing song title in lblNP.
      */
     private void processMediaInfo() {
         try {
