@@ -111,6 +111,7 @@ public class PlaylistModel {
                 {
                     playlist.removeMusic(m);
                     instance.updatePlaylistView(playlist.getMusiclist());
+                    break;
                 }
             }
         }

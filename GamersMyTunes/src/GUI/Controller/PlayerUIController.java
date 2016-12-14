@@ -326,9 +326,10 @@ public class PlayerUIController implements Initializable {
      */
     private void deleteSong() 
     {
-                tblSongs.getItems().remove(selectedSong);
+                Music song = tblSongs.getSelectionModel().getSelectedItem();
+                tblSongs.getItems().remove(song);
                 musicManager.stopSong();
-                playlistModel.removeSongFromAllPlaylists(selectedSong);
+                playlistModel.removeSongFromAllPlaylists(song);
                 playlistModel.savePlaylistData();
     }
     /**
