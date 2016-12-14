@@ -8,15 +8,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="565.0" prefWidth="976.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.PlayerUIController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="580.0" prefWidth="976.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.PlayerUIController">
    <children>
       <Button fx:id="btnPlay" layoutX="98.0" layoutY="37.0" mnemonicParsing="false" onAction="#btnPlayActionPerformed" prefHeight="25.0" prefWidth="51.0" text="Play" />
       <Button fx:id="btnStop" layoutX="149.0" layoutY="37.0" mnemonicParsing="false" onAction="#btnStopActionPerformed" prefHeight="21.0" prefWidth="56.0" text="Stop" />
       <Button fx:id="btnPlaylistNew" layoutX="42.0" layoutY="503.0" mnemonicParsing="false" onAction="#btnPlaylistUINew" text="New" />
-      <Button fx:id="btnPlaylistDelete" layoutX="198.0" layoutY="503.0" mnemonicParsing="false" onAction="#btnPlaylistDeleteActionPerformed" text="Delete" />
+      <Button fx:id="btnPlaylistDelete" layoutX="186.0" layoutY="503.0" mnemonicParsing="false" onAction="#btnPlaylistDeleteActionPerformed" text="Delete" />
       <Button fx:id="btnTblSongsNew" layoutX="548.0" layoutY="503.0" mnemonicParsing="false" onAction="#btnTblSongsNewActionPerformed" text="New" />
-      <Button fx:id="btnTblSongsDelete" layoutX="834.0" layoutY="503.0" mnemonicParsing="false" onAction="#btnTblSongsDeleteActionPerformed" text="Delete" />
-      <Button fx:id="btnClose" layoutX="885.0" layoutY="528.0" mnemonicParsing="false" onAction="#btnCloseActionPerformed" text="Close" />
+      <Button fx:id="btnTblSongsDelete" layoutX="822.0" layoutY="503.0" mnemonicParsing="false" onAction="#btnTblSongsDeleteActionPerformed" text="Delete" />
+      <Button fx:id="btnClose" layoutX="885.0" layoutY="534.0" mnemonicParsing="false" onAction="#btnCloseActionPerformed" text="Close" />
       <TableView fx:id="tblPlaylists" layoutX="42.0" layoutY="84.0" onMousePressed="#tblChangePlaylistActionPerformed" prefHeight="419.0" prefWidth="207.0">
         <columns>
           <TableColumn fx:id="playlistsColName" prefWidth="75.0" text="Name" />
@@ -49,10 +49,10 @@
       <Label fx:id="lblSOP" alignment="CENTER" layoutX="354.0" layoutY="64.0" text="Songs on playlist:" />
       <Label fx:id="lblPlaylists" alignment="CENTER" layoutX="114.0" layoutY="62.0" prefHeight="21.0" prefWidth="63.0" text="Playlists:" />
       <Label fx:id="lblSongs" alignment="CENTER" layoutX="699.0" layoutY="64.0" text="Songs:" />
-      <Label alignment="CENTER" layoutX="760.0" layoutY="41.0" text="Filter:" />
+      <Label alignment="CENTER" layoutX="753.0" layoutY="41.0" text="Filter:" />
       <TextField fx:id="txtFilter" layoutX="789.0" layoutY="37.0" prefHeight="21.0" prefWidth="96.0" />
       <Slider fx:id="sliderVolume" layoutX="331.0" layoutY="42.0" onMouseDragged="#handleOnVolumeChanged" />
-      <Label fx:id="lblNP" layoutX="618.0" layoutY="39.0" prefHeight="21.0" prefWidth="79.0" />
+      <Label fx:id="lblNP" layoutX="635.0" layoutY="42.0" prefHeight="21.0" prefWidth="79.0" />
       <Button fx:id="btnAddToPlaylist" layoutX="506.0" layoutY="84.0" mnemonicParsing="false" onAction="#btnAddToPlaylistActionPerformed" prefHeight="31.0" prefWidth="42.0" text="&lt;-" />
       <Label fx:id="lblNowPlaying" alignment="CENTER" layoutX="548.0" layoutY="41.0" text="Now playing:" />
    </children>

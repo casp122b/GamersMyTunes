@@ -257,7 +257,7 @@ public class PlayerUIController implements Initializable {
         Playlist pIndex = tblPlaylists.selectionModelProperty().getValue().getSelectedItem();
         if (mIndex != null && pIndex != null) {
             pIndex.addMusic(mIndex);
-
+            
             playlistModel.updatePlaylistView(pIndex.getMusiclist());
         }
     }
@@ -299,7 +299,7 @@ public class PlayerUIController implements Initializable {
      */
     public void addToPlaylist(Playlist pl) {
         tblPlaylists.getItems().add(pl);
-
+        playlistModel.savePlaylistData();
     }
     /**
      * Opens SongUI.
@@ -324,24 +324,21 @@ public class PlayerUIController implements Initializable {
      * If there is a song currently playing, it will be stopped, and the
      * selected song is deleted from tblSongs.
      */
-    private void deleteSong() {
-        for (Music m : tblSongs.getItems()) {
-            if (m.getTitle() == selectedSong.getTitle()) {
+    private void deleteSong() 
+    {
                 tblSongs.getItems().remove(selectedSong);
                 musicManager.stopSong();
-            }
-        }
+                playlistModel.removeSongFromAllPlaylists(selectedSong);
+                playlistModel.savePlaylistData();
     }
     /**
      * makes it possible to delet playlists
      */
     private void deletePlaylist() 
     {
-        for (Playlist pl : tblPlaylists.getItems()) {
-            if (pl.getName() == selectedPlaylist.getName()) {
-                tblPlaylists.getItems().remove(selectedPlaylist);
-            }
-        }
+        int i = tblPlaylists.getSelectionModel().getSelectedIndex();
+        tblPlaylists.getItems().remove(i);
+        playlistModel.savePlaylistData();
     }
     /**
      * adds song to songlibrary

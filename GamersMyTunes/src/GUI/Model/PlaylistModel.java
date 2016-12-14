@@ -95,12 +95,26 @@ public class PlaylistModel {
             ArrayList<Playlist> playlistToSave = new ArrayList<>();
             for (Playlist playlist : playlists) {
                 playlistToSave.add(playlist);
-
             }
             pDAO.writeObjectData(playlistToSave, "PlaylistTest.dat");
         } catch (IOException ex) {
-            // TODO: exception handling.
         }
+    }
+
+    public void removeSongFromAllPlaylists(Music selectedSong) 
+    {
+        for(Playlist playlist : playlists)
+        {
+            for(Music m : playlist.getMusiclist())
+            {
+                if (m.getTitle().equals(selectedSong.getTitle()))
+                {
+                    playlist.removeMusic(m);
+                    instance.updatePlaylistView(playlist.getMusiclist());
+                }
+            }
+        }
+                
     }
 
 }
